@@ -1,6 +1,7 @@
 import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
-import { BotanicalGarden } from "@/components/botanical-garden";
+import { GroveBrowser } from "@/components/grove-browser";
+import { IntroGate } from "@/components/intro-gate";
 import { ArrowUpRight } from "lucide-react";
 
 export default function HomePage() {
@@ -13,6 +14,8 @@ export default function HomePage() {
 
   return (
     <>
+      <IntroGate />
+
       <section className="px-4 pt-14 md:pt-20">
         <div className="mx-auto max-w-4xl text-center">
           <span className="inline-block rounded-full glass px-4 py-1.5 text-xs font-semibold uppercase tracking-wider text-terracotta-dark">
@@ -54,7 +57,7 @@ export default function HomePage() {
             <p className="mt-3 text-ink-soft">{tg("subtitle")}</p>
           </div>
           <div className="mt-12 md:mt-16">
-            <BotanicalGarden />
+            <GroveBrowser />
           </div>
         </div>
       </section>

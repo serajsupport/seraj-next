@@ -1,4 +1,17 @@
 {
+  "intro": {
+    "lines": ["From seed", "to shipment —", "a grove we tend by hand."],
+    "subtitle": "Bulk almonds, pistachios, pine nuts, dried figs, and saffron.",
+    "enter": "Enter the Grove"
+  },
+  "grove": {
+    "chapter": "Chapter",
+    "enter": "Enter the Grove",
+    "prev": "Previous product",
+    "next": "Next product",
+    "changeProduct": "Change product",
+    "backToGrove": "Back to the grove"
+  },
   "nav": {
     "home": "Home",
     "products": "Products",

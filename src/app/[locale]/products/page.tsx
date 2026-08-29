@@ -1,5 +1,5 @@
 import { useTranslations } from "next-intl";
-import { BotanicalGarden } from "@/components/botanical-garden";
+import { GroveBrowser } from "@/components/grove-browser";
 
 export default function ProductsPage() {
   const t = useTranslations("products");
@@ -14,7 +14,7 @@ export default function ProductsPage() {
           <p className="mt-3 text-ink-soft">{t("subheading")}</p>
         </div>
         <div className="mt-14 md:mt-20">
-          <BotanicalGarden />
+          <GroveBrowser />
         </div>
       </div>
     </section>
