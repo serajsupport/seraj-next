@@ -1,0 +1,145 @@
+{
+  "nav": {
+    "home": "Home",
+    "products": "Products",
+    "about": "About",
+    "contact": "Contact",
+    "rfq": "Request a Quote"
+  },
+  "common": {
+    "rfqButton": "Request a Quote",
+    "learnMore": "Learn more",
+    "viewSpec": "View specification",
+    "backToProducts": "Back to all products",
+    "origin": "Origin",
+    "grades": "Grades available",
+    "packaging": "Packaging options",
+    "uses": "Typical uses",
+    "tapHint": "Tap a plant to explore"
+  },
+  "hero": {
+    "eyebrow": "Bulk export · Wholesale only",
+    "title": "From the orchard to your production line",
+    "subtitle": "Seraj Store supplies grade-A almonds, pistachios, pine nuts, dried figs, and saffron in bulk — sourced at origin, sampled and graded, packed for export, priced for volume.",
+    "cta": "Request a Quote",
+    "ctaSecondary": "Browse the range"
+  },
+  "garden": {
+    "title": "Our range, from field to freight",
+    "subtitle": "Five origin crops. Every lot sampled, graded, and export-documented."
+  },
+  "trust": {
+    "title": "Built for buyers who order by the container",
+    "items": [
+      {
+        "title": "Origin-direct sourcing",
+        "body": "We buy directly at the growing regions, cutting out layers of resale so your landed cost stays competitive."
+      },
+      {
+        "title": "Sampled, graded lots",
+        "body": "Every shipment is sampled and graded before it ships, so what you approve is what arrives."
+      },
+      {
+        "title": "Export-ready packing",
+        "body": "Bulk bags, cartons, or vacuum packaging built for ocean freight, with full export documentation."
+      },
+      {
+        "title": "Flexible MOQs & Incoterms",
+        "body": "From trial pallets to full containers, quoted FOB, CFR, or CIF to suit how you buy."
+      }
+    ]
+  },
+  "ctaBand": {
+    "title": "Sourcing for a season, or standing supply?",
+    "body": "Tell us the product, grade, and volume you need — we'll come back with a firm quote and lead time.",
+    "button": "Talk to us"
+  },
+  "products": {
+    "heading": "The range",
+    "subheading": "Five crops, graded to industry standard and packed to order.",
+    "almonds": {
+      "name": "Almonds",
+      "tagline": "Mamra & Nonpareil grades",
+      "description": "Bulk almonds sourced from Iran's Mamra orchards and California's premium groves, sorted for consistent size and moisture, ready for confectionery, snacking, or nut-milk production.",
+      "origin": "Iran & California, USA",
+      "grades": ["Mamra Super", "Mamra A", "Nonpareil", "Carmel", "In-shell"],
+      "packaging": ["25kg PP bags", "50kg export cartons", "Vacuum-sealed on request"],
+      "uses": ["Confectionery & chocolate", "Snacking", "Nut milk & plant-based dairy", "Bakery"]
+    },
+    "pistachios": {
+      "name": "Pistachios",
+      "tagline": "Akbari, Kaleh Ghouchi & Fandoghi",
+      "description": "Iranian pistachios from the growing belts of Kerman and Rafsanjan, offered raw or roasted, in-shell or kernel, at the size grade your production line needs.",
+      "origin": "Kerman & Rafsanjan, Iran",
+      "grades": ["Akbari (jumbo)", "Kaleh Ghouchi", "Fandoghi (round)", "Green kernel"],
+      "packaging": ["10kg vacuum tins", "22.7kg export cartons", "Bulk jumbo bags"],
+      "uses": ["Snacking", "Confectionery", "Ice cream & gelato", "Bakery & ready meals"]
+    },
+    "pine-nuts": {
+      "name": "Pine Nuts",
+      "tagline": "Chilgoza & Chinese grades",
+      "description": "Wild-harvested chilgoza pine nuts and cultivated Chinese pine nuts, hand-cracked and vacuum packed to protect their delicate oils in transit.",
+      "origin": "Pakistan / Afghanistan & China",
+      "grades": ["Chilgoza (long grain)", "Chinese short grain", "Chinese long grain"],
+      "packaging": ["1kg & 5kg vacuum pouches", "10kg export cartons"],
+      "uses": ["Pesto & sauces", "Salads & garnish", "Confectionery", "Middle Eastern rice dishes"]
+    },
+    "dried-figs": {
+      "name": "Dried Figs",
+      "tagline": "Estahban sun-dried",
+      "description": "Naturally sun-dried figs from Estahban, Iran and the Aydin valley in Turkey, offered whole, layer-packed, or as a paste base for bakery and health-food production.",
+      "origin": "Estahban, Iran & Aydin, Türkiye",
+      "grades": ["Estahban sun-dried", "Natural whole", "Layer-packed premium"],
+      "packaging": ["5kg & 10kg cartons", "Bulk 20kg cases", "Layer trays on request"],
+      "uses": ["Snacking", "Bakery & confectionery", "Health bars", "Dried fruit mixes"]
+    },
+    "saffron": {
+      "name": "Saffron",
+      "tagline": "Sargol, Pushal & Negin",
+      "description": "Khorasan saffron, hand-picked and dried within hours of harvest, graded to ISO 3632 for color, flavor, and aroma strength — from bulk threads to retail-ready packaging.",
+      "origin": "Khorasan, Iran",
+      "grades": ["Sargol (all red)", "Pushal", "Negin (premium strands)", "Bunch (whole flower)"],
+      "packaging": ["1g–1kg retail tins & tubes", "100g–1kg bulk vacuum foil"],
+      "uses": ["Culinary & confectionery", "Beverages", "Pharmaceutical extracts", "Cosmetics"]
+    }
+  },
+  "about": {
+    "eyebrow": "About Seraj Store",
+    "title": "A direct line to origin",
+    "intro": "Seraj Store is a bulk supplier of premium dried nuts, dried fruit, and saffron, built to serve importers, retailers, manufacturers, and HORECA buyers who need consistent quality at volume.",
+    "body": "We work directly with growers and packing houses across Iran, Central Asia, Türkiye, and the United States, sampling and grading every lot before it ships. Whether you're placing a trial order or setting up standing supply, we quote transparently and document every shipment for smooth customs clearance at your end.",
+    "pointsTitle": "What buyers get working with us",
+    "points": [
+      "One point of contact across five product lines",
+      "Sample-approved lots before shipment",
+      "Custom packaging and private-label options",
+      "Quotes in FOB, CFR, or CIF to match your logistics"
+    ]
+  },
+  "contact": {
+    "eyebrow": "Request a Quote",
+    "title": "Tell us what you need",
+    "subtitle": "Share your product, grade, and volume — we'll respond with pricing and lead time.",
+    "fields": {
+      "name": "Full name",
+      "company": "Company name",
+      "email": "Work email",
+      "phone": "Phone / WhatsApp",
+      "country": "Country",
+      "product": "Product of interest",
+      "quantity": "Estimated quantity",
+      "message": "Additional details"
+    },
+    "productPlaceholder": "Select a product",
+    "quantityPlaceholder": "e.g. 1 x 20ft container / month",
+    "submit": "Send inquiry",
+    "success": "Thank you — your inquiry has been received. Our team will respond within one business day."
+  },
+  "footer": {
+    "tagline": "Bulk almonds, pistachios, pine nuts, dried figs, and saffron — sourced at origin, delivered worldwide.",
+    "productsHeading": "Products",
+    "companyHeading": "Company",
+    "contactHeading": "Contact",
+    "rights": "All rights reserved."
+  }
+}
