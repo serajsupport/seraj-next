@@ -1,11 +1,20 @@
+"use client";
+
 import { useTranslations } from "next-intl";
-import { Link } from "@/i18n/navigation";
+import { Link, usePathname } from "@/i18n/navigation";
 import { PRODUCTS } from "@/data/products";
+
+function isRoomRoute(pathname: string) {
+  return pathname.startsWith("/products/") && pathname !== "/products/";
+}
 
 export function SiteFooter() {
   const t = useTranslations("footer");
   const tp = useTranslations("products");
   const tn = useTranslations("nav");
+  const pathname = usePathname();
+
+  if (isRoomRoute(pathname)) return null;
 
   return (
     <footer className="mt-24 px-4 pb-6">

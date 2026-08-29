@@ -11,11 +11,17 @@ const NAV_ITEMS = [
   { href: "/about", key: "about" },
 ] as const;
 
+function isRoomRoute(pathname: string) {
+  return pathname.startsWith("/products/") && pathname !== "/products/";
+}
+
 export function SiteHeader() {
   const t = useTranslations("nav");
   const locale = useLocale();
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
+
+  if (isRoomRoute(pathname)) return null;
 
   return (
     <header className="sticky top-0 z-40 px-4 pt-4">
