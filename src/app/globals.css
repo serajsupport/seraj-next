@@ -15,6 +15,18 @@
   --ink: #2a2318;
   --ink-soft: #55492f;
 
+  /* Per-product accents, each tied to that crop's real color */
+  --almond: #c68a93;
+  --almond-dark: #9c5c66;
+  --pistachio: #93a35a;
+  --pistachio-dark: #647236;
+  --pine: #2e5a4e;
+  --pine-dark: #1c3a32;
+  --fig: #723253;
+  --fig-dark: #4a1f36;
+  --saffron-red: #a32638;
+  --saffron-red-dark: #731b28;
+
   --glass-fill: linear-gradient(
     135deg,
     rgba(255, 252, 244, 0.62),
@@ -48,6 +60,16 @@
   --color-rust: var(--rust);
   --color-ink: var(--ink);
   --color-ink-soft: var(--ink-soft);
+  --color-almond: var(--almond);
+  --color-almond-dark: var(--almond-dark);
+  --color-pistachio: var(--pistachio);
+  --color-pistachio-dark: var(--pistachio-dark);
+  --color-pine: var(--pine);
+  --color-pine-dark: var(--pine-dark);
+  --color-fig: var(--fig);
+  --color-fig-dark: var(--fig-dark);
+  --color-saffron-red: var(--saffron-red);
+  --color-saffron-red-dark: var(--saffron-red-dark);
   --font-display: var(--font-fraunces), serif;
   --font-sans: var(--font-inter), sans-serif;
 }

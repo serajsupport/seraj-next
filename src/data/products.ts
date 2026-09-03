@@ -6,7 +6,7 @@ import {
   SaffronCrocusIcon,
 } from "@/components/botanicals";
 
-export type AccentColor = "mustard" | "olive" | "terracotta" | "rust";
+export type AccentColor = "almond" | "pistachio" | "pine" | "fig" | "saffron";
 
 export type Product = {
   slug: string;
@@ -15,11 +15,11 @@ export type Product = {
 };
 
 export const PRODUCTS: Product[] = [
-  { slug: "almonds", accent: "mustard", Icon: AlmondBlossomIcon },
-  { slug: "pistachios", accent: "olive", Icon: PistachioBranchIcon },
-  { slug: "pine-nuts", accent: "terracotta", Icon: PineBranchIcon },
-  { slug: "dried-figs", accent: "rust", Icon: FigBranchIcon },
-  { slug: "saffron", accent: "terracotta", Icon: SaffronCrocusIcon },
+  { slug: "almonds", accent: "almond", Icon: AlmondBlossomIcon },
+  { slug: "pistachios", accent: "pistachio", Icon: PistachioBranchIcon },
+  { slug: "pine-nuts", accent: "pine", Icon: PineBranchIcon },
+  { slug: "dried-figs", accent: "fig", Icon: FigBranchIcon },
+  { slug: "saffron", accent: "saffron", Icon: SaffronCrocusIcon },
 ];
 
 export function getProduct(slug: string) {

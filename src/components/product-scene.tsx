@@ -4,7 +4,7 @@ import { useState } from "react";
 import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
 import { PRODUCTS, getProduct } from "@/data/products";
-import { accentText } from "@/lib/accent";
+import { accentText, accentBg } from "@/lib/accent";
 import { Hotspot, HotspotSheet } from "@/components/hotspot";
 import { BasketIcon, SackIcon } from "@/components/scene-props";
 import { ArrowUpRight, ChevronLeft, ChevronRight, X } from "lucide-react";
@@ -65,7 +65,7 @@ export function ProductScene({ slug }: { slug: string }) {
       {/* centered composition column */}
       <div className="pointer-events-none absolute inset-0 mx-auto max-w-xl">
         <div className="pointer-events-auto absolute inset-x-0 top-[9%] text-center">
-          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-terracotta-dark">
+          <p className={`text-xs font-semibold uppercase tracking-[0.2em] ${accentText[product.accent]}`}>
             {tg("chapter")} {String(index + 1).padStart(2, "0")}
           </p>
           <h1 className="mt-2 font-display text-4xl font-medium text-ink sm:text-5xl">
@@ -83,6 +83,7 @@ export function ProductScene({ slug }: { slug: string }) {
             label={t("name")}
             style={{ left: "50%", top: "50%" }}
             onClick={() => setPanel("about")}
+            dotClassName={accentBg[product.accent]}
           />
 
           {/* basket */}
@@ -93,6 +94,7 @@ export function ProductScene({ slug }: { slug: string }) {
             label={tc("grades")}
             style={{ left: "24%", top: "84%" }}
             onClick={() => setPanel("grades")}
+            dotClassName={accentBg[product.accent]}
           />
 
           {/* sack */}
@@ -103,6 +105,7 @@ export function ProductScene({ slug }: { slug: string }) {
             label={tc("packaging")}
             style={{ left: "76%", top: "83%" }}
             onClick={() => setPanel("packaging")}
+            dotClassName={accentBg[product.accent]}
           />
         </div>
       </div>
@@ -138,6 +141,7 @@ export function ProductScene({ slug }: { slug: string }) {
         open={panel === "about"}
         onClose={() => setPanel(null)}
         eyebrow={t("tagline")}
+        eyebrowClassName={accentText[product.accent]}
         title={t("name")}
       >
         <p className="leading-relaxed text-ink-soft">{t("description")}</p>
@@ -153,33 +157,43 @@ export function ProductScene({ slug }: { slug: string }) {
         open={panel === "grades"}
         onClose={() => setPanel(null)}
         eyebrow={t("name")}
+        eyebrowClassName={accentText[product.accent]}
         title={tc("grades")}
       >
-        <ChipList items={grades} />
+        <ChipList items={grades} dotClassName={accentBg[product.accent]} />
       </HotspotSheet>
 
       <HotspotSheet
         open={panel === "packaging"}
         onClose={() => setPanel(null)}
         eyebrow={t("name")}
+        eyebrowClassName={accentText[product.accent]}
         title={tc("packaging")}
       >
-        <ChipList items={packaging} />
+        <ChipList items={packaging} dotClassName={accentBg[product.accent]} />
         <p className="mt-6 text-xs font-semibold uppercase tracking-wider text-ink-soft">
           {tc("uses")}
         </p>
-        <ChipList items={uses} className="mt-3" />
+        <ChipList items={uses} className="mt-3" dotClassName={accentBg[product.accent]} />
       </HotspotSheet>
     </div>
   );
 }
 
-function ChipList({ items, className }: { items: string[]; className?: string }) {
+function ChipList({
+  items,
+  className,
+  dotClassName = "bg-terracotta",
+}: {
+  items: string[];
+  className?: string;
+  dotClassName?: string;
+}) {
   return (
     <ul className={`flex flex-col gap-2.5 ${className ?? ""}`}>
       {items.map((item) => (
         <li key={item} className="flex items-start gap-2 text-sm text-ink">
-          <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-terracotta" />
+          <span className={`mt-2 h-1.5 w-1.5 shrink-0 rounded-full ${dotClassName}`} />
           {item}
         </li>
       ))}

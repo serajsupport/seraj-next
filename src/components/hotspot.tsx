@@ -8,10 +8,12 @@ export function Hotspot({
   style,
   onClick,
   label,
+  dotClassName = "bg-terracotta",
 }: {
   style: React.CSSProperties;
   onClick: () => void;
   label: string;
+  dotClassName?: string;
 }) {
   return (
     <button
@@ -23,7 +25,7 @@ export function Hotspot({
     >
       <span className="absolute h-10 w-10 animate-ping rounded-full bg-paper/70" />
       <span className="relative grid h-9 w-9 place-items-center rounded-full border border-ink/15 bg-paper/90 text-ink shadow-[0_6px_18px_rgba(42,35,24,0.25)] transition-transform group-hover:scale-110">
-        <span className="h-2 w-2 rounded-full bg-terracotta" />
+        <span className={`h-2 w-2 rounded-full ${dotClassName}`} />
       </span>
     </button>
   );
@@ -33,12 +35,14 @@ export function HotspotSheet({
   open,
   onClose,
   eyebrow,
+  eyebrowClassName = "text-terracotta-dark",
   title,
   children,
 }: {
   open: boolean;
   onClose: () => void;
   eyebrow: string;
+  eyebrowClassName?: string;
   title: string;
   children: ReactNode;
 }) {
@@ -73,7 +77,7 @@ export function HotspotSheet({
             >
               <X size={16} />
             </button>
-            <p className="text-xs font-semibold uppercase tracking-wider text-terracotta-dark">
+            <p className={`text-xs font-semibold uppercase tracking-wider ${eyebrowClassName}`}>
               {eyebrow}
             </p>
             <h3 className="mt-2 font-display text-2xl font-medium text-ink">
