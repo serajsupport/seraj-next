@@ -2,6 +2,8 @@
 
 import { useEffect, useRef, type ReactNode } from "react";
 import { useTranslations } from "next-intl";
+import { motion } from "motion/react";
+import Image from "next/image";
 import { Link } from "@/i18n/navigation";
 import { PRODUCTS, getProduct, type AccentColor } from "@/data/products";
 import { BasketIcon, SackIcon } from "@/components/scene-props";
@@ -73,6 +75,21 @@ export function ProductStory({ slug }: { slug: string }) {
           <product.Icon className="h-full w-full text-ink" />
         </Parallax>
         <Reveal className="relative z-10 max-w-2xl">
+          <motion.div
+            initial={{ y: -160, rotate: -10, opacity: 0 }}
+            animate={{ y: 0, rotate: -3, opacity: 1 }}
+            transition={{ type: "spring", stiffness: 110, damping: 13, delay: 0.3 }}
+            className="relative mx-auto mb-6 w-[180px] overflow-hidden rounded-2xl shadow-[0_24px_60px_rgba(0,0,0,0.55)] sm:w-[220px]"
+          >
+            <Image
+              src={`/products/${product.slug}.png`}
+              alt={t("name")}
+              width={298}
+              height={398}
+              priority
+              className="h-full w-full object-cover"
+            />
+          </motion.div>
           <span className="glass inline-block rounded-full px-4 py-1.5 text-xs font-semibold uppercase tracking-wider text-ink">
             {t("origin")}
           </span>
