@@ -37,23 +37,72 @@
   --saffron-red: #a32638;
   --saffron-red-dark: #731b28;
 
+  /* Re-tintable glass/mesh plumbing: swapped per [data-palette] below */
+  --surface-rgb: 20 22 30;
+  --accent-rgb: 47 111 239;
+  --accent-tint-rgb: 143 180 255;
+  --cantaloupe-rgb: 255 148 82;
+  --mesh-base-gradient: linear-gradient(180deg, #121217, var(--midnight) 40%, #050507);
+
   --glass-fill: linear-gradient(
     135deg,
-    rgba(20, 22, 30, 0.72),
-    rgba(9, 9, 13, 0.42)
+    rgb(var(--surface-rgb) / 0.72),
+    rgb(var(--surface-rgb) / 0.42)
   );
   --glass-fill-strong: linear-gradient(
     160deg,
-    rgba(24, 27, 38, 0.85),
-    rgba(9, 9, 13, 0.55)
+    rgb(var(--surface-rgb) / 0.88),
+    rgb(var(--surface-rgb) / 0.58)
   );
-  --glass-border: rgba(143, 180, 255, 0.4);
+  --glass-border: rgb(var(--accent-tint-rgb) / 0.4);
   --glass-shadow: 0 12px 40px rgba(0, 0, 0, 0.45),
-    inset 0 1px 0 rgba(143, 180, 255, 0.12);
+    inset 0 1px 0 rgb(var(--accent-tint-rgb) / 0.12);
 
   --radius-lg: 28px;
   --radius-md: 18px;
   --radius-sm: 12px;
+}
+
+/* Art Deco Palace — light */
+html[data-palette="artdeco"] {
+  color-scheme: light;
+  --midnight: #f0e6c8;
+  --ink: #16281f;
+  --ink-soft: #3f5a4c;
+  --electric-blue: #a9801a;
+  --electric-blue-dark: #7a5c10;
+  --electric-blue-light: #c9a227;
+  --cantaloupe: #0f5c45;
+  --cantaloupe-dark: #0b4535;
+  --cantaloupe-light: #11795c;
+  --surface-rgb: 227 214 168;
+  --accent-rgb: 169 128 26;
+  --accent-tint-rgb: 201 162 39;
+  --cantaloupe-rgb: 15 92 69;
+  --mesh-base-gradient: linear-gradient(180deg, #fbf3da, var(--midnight) 40%, #e3d6a8);
+  --font-display: var(--font-cinzel), serif;
+  --font-sans: var(--font-marcellus), serif;
+}
+
+/* Kodachrome '70s — dark */
+html[data-palette="kodachrome"] {
+  color-scheme: dark;
+  --midnight: #2b1708;
+  --ink: #f3ddb0;
+  --ink-soft: #c3a46c;
+  --electric-blue: #e2672b;
+  --electric-blue-dark: #b8491a;
+  --electric-blue-light: #f08a52;
+  --cantaloupe: #8a9a42;
+  --cantaloupe-dark: #647236;
+  --cantaloupe-light: #a3b35c;
+  --surface-rgb: 58 33 16;
+  --accent-rgb: 226 103 43;
+  --accent-tint-rgb: 240 138 82;
+  --cantaloupe-rgb: 138 154 66;
+  --mesh-base-gradient: linear-gradient(180deg, #3a2110, var(--midnight) 40%, #170c04);
+  --font-display: var(--font-bevan), serif;
+  --font-sans: var(--font-archivo-narrow), sans-serif;
 }
 
 @theme inline {
@@ -116,10 +165,10 @@ body {
   z-index: -2;
   pointer-events: none;
   background-image:
-    radial-gradient(38rem 30rem at 12% -6%, rgba(47, 111, 239, 0.22), transparent 60%),
-    radial-gradient(34rem 28rem at 92% 8%, rgba(255, 148, 82, 0.16), transparent 60%),
-    radial-gradient(40rem 32rem at 50% 105%, rgba(47, 111, 239, 0.16), transparent 60%),
-    linear-gradient(180deg, #121217, var(--midnight) 40%, #050507);
+    radial-gradient(38rem 30rem at 12% -6%, rgb(var(--accent-rgb) / 0.22), transparent 60%),
+    radial-gradient(34rem 28rem at 92% 8%, rgb(var(--cantaloupe-rgb) / 0.16), transparent 60%),
+    radial-gradient(40rem 32rem at 50% 105%, rgb(var(--accent-rgb) / 0.16), transparent 60%),
+    var(--mesh-base-gradient);
 }
 
 /* Film-grain texture, tuned to read on the midnight background */
@@ -184,12 +233,12 @@ body {
 .glass-pod::before {
   background: linear-gradient(
     180deg,
-    rgba(143, 180, 255, 0.55) 0%,
-    rgba(143, 180, 255, 0.16) 20%,
-    rgba(143, 180, 255, 0) 40%,
-    rgba(143, 180, 255, 0) 60%,
-    rgba(143, 180, 255, 0.16) 80%,
-    rgba(143, 180, 255, 0.55) 100%
+    rgb(var(--accent-tint-rgb) / 0.55) 0%,
+    rgb(var(--accent-tint-rgb) / 0.16) 20%,
+    rgb(var(--accent-tint-rgb) / 0) 40%,
+    rgb(var(--accent-tint-rgb) / 0) 60%,
+    rgb(var(--accent-tint-rgb) / 0.16) 80%,
+    rgb(var(--accent-tint-rgb) / 0.55) 100%
   );
 }
 
@@ -204,18 +253,18 @@ body {
 .glass-strong::before {
   background: linear-gradient(
     180deg,
-    rgba(143, 180, 255, 0.75) 0%,
-    rgba(143, 180, 255, 0.26) 20%,
-    rgba(143, 180, 255, 0) 40%,
-    rgba(143, 180, 255, 0) 60%,
-    rgba(143, 180, 255, 0.26) 80%,
-    rgba(143, 180, 255, 0.75) 100%
+    rgb(var(--accent-tint-rgb) / 0.75) 0%,
+    rgb(var(--accent-tint-rgb) / 0.26) 20%,
+    rgb(var(--accent-tint-rgb) / 0) 40%,
+    rgb(var(--accent-tint-rgb) / 0) 60%,
+    rgb(var(--accent-tint-rgb) / 0.26) 80%,
+    rgb(var(--accent-tint-rgb) / 0.75) 100%
   );
 }
 
 .glass-pod {
   border-radius: 999px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(143, 180, 255, 0.18);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgb(var(--accent-tint-rgb) / 0.18);
 }
 
 .text-balance {

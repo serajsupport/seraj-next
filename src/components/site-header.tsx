@@ -4,6 +4,7 @@ import { useState } from "react";
 import { useLocale, useTranslations } from "next-intl";
 import { Link, usePathname } from "@/i18n/navigation";
 import { Menu, X } from "lucide-react";
+import { PaletteSwitcher } from "@/components/palette-switcher";
 
 const NAV_ITEMS = [
   { href: "/", key: "home" },
@@ -55,6 +56,7 @@ export function SiteHeader() {
         </nav>
 
         <div className="hidden items-center gap-2 md:flex">
+          <PaletteSwitcher />
           <LocaleSwitcher locale={locale} pathname={pathname} />
           <Link
             href="/contact"
@@ -94,6 +96,7 @@ export function SiteHeader() {
             {t("rfq")}
           </Link>
           <div className="mt-1 flex justify-center gap-2 pt-1">
+            <PaletteSwitcher />
             <LocaleSwitcher locale={locale} pathname={pathname} />
           </div>
         </div>
