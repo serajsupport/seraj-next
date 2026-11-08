@@ -1,11 +1,11 @@
 import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
-import { ArrowUpRight, Check } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 
 export default function AboutPage() {
   const t = useTranslations("about");
   const tc = useTranslations("common");
-  const points = t.raw("points") as string[];
+  const paragraphs = t.raw("paragraphs") as string[];
 
   return (
     <section className="px-4 pt-14 pb-24 md:pt-20">
@@ -16,27 +16,15 @@ export default function AboutPage() {
         <h1 className="mt-6 font-display text-4xl font-medium text-ink md:text-5xl">
           {t("title")}
         </h1>
-        <p className="mt-6 max-w-2xl text-lg leading-relaxed text-ink-soft">
-          {t("intro")}
-        </p>
-        <p className="mt-4 max-w-2xl leading-relaxed text-ink-soft">
-          {t("body")}
-        </p>
-
-        <div className="mt-12 rounded-[2rem] glass-strong p-8 md:p-10">
-          <p className="font-display text-xl font-medium text-ink">
-            {t("pointsTitle")}
-          </p>
-          <ul className="mt-6 grid gap-4 sm:grid-cols-2">
-            {points.map((point) => (
-              <li key={point} className="flex items-start gap-3">
-                <span className="mt-0.5 grid h-6 w-6 shrink-0 place-items-center rounded-full bg-electric-blue/15 text-electric-blue">
-                  <Check size={14} />
-                </span>
-                <span className="text-sm leading-relaxed text-ink">{point}</span>
-              </li>
-            ))}
-          </ul>
+        <div className="mt-6 flex max-w-2xl flex-col gap-4">
+          {paragraphs.map((p, i) => (
+            <p
+              key={i}
+              className={i === 0 ? "text-lg leading-relaxed text-ink-soft" : "leading-relaxed text-ink-soft"}
+            >
+              {p}
+            </p>
+          ))}
         </div>
 
         <Link

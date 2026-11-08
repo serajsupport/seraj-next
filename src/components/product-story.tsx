@@ -15,6 +15,14 @@ const accentVar: Record<AccentColor, string> = {
   saffron: "var(--saffron-red)",
 };
 
+type Spec = {
+  grade?: string;
+  form: string;
+  minOrder: string;
+  packing?: string;
+  analysis: string;
+};
+
 export function ProductStory({ slug }: { slug: string }) {
   const product = getProduct(slug);
   const t = useTranslations(`products.${slug}`);
@@ -28,9 +36,17 @@ export function ProductStory({ slug }: { slug: string }) {
   const accent = accentVar[product.accent];
   const prev = PRODUCTS[(index - 1 + PRODUCTS.length) % PRODUCTS.length];
   const next = PRODUCTS[(index + 1) % PRODUCTS.length];
-  const grades = t.raw("grades") as string[];
-  const packaging = t.raw("packaging") as string[];
-  const uses = t.raw("uses") as string[];
+  const spec = t.raw("spec") as Spec;
+  const usedFor = t.raw("usedFor") as string[];
+  const nutrition = t("nutrition");
+
+  const specRows: { label: string; value: string }[] = [
+    ...(spec.grade ? [{ label: tc("specLabels.grade"), value: spec.grade }] : []),
+    { label: tc("specLabels.form"), value: spec.form },
+    { label: tc("specLabels.minOrder"), value: spec.minOrder },
+    ...(spec.packing ? [{ label: tc("specLabels.packing"), value: spec.packing }] : []),
+    { label: tc("specLabels.analysis"), value: spec.analysis },
+  ];
 
   return (
     <div className="snap-y snap-proximity">
@@ -95,32 +111,37 @@ export function ProductStory({ slug }: { slug: string }) {
         </Reveal>
       </section>
 
-      {/* 3 — grades (statement block) */}
+      {/* 3 — specification (statement block) */}
       <section
         className="snap-start relative flex min-h-dvh w-full items-center overflow-hidden px-6 py-24"
         style={{ background: `color-mix(in srgb, ${accent} 75%, var(--ink-deep))` }}
       >
-        <Reveal className="relative z-10 mx-auto w-full max-w-xl text-center">
-          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-paper/85">
+        <Reveal className="relative z-10 mx-auto w-full max-w-xl">
+          <p className="text-center text-xs font-semibold uppercase tracking-[0.2em] text-paper/85">
             {t("name")}
           </p>
-          <h2 className="mt-3 font-display text-3xl font-medium text-paper sm:text-4xl">
-            {tc("grades")}
+          <h2 className="mt-3 text-center font-display text-3xl font-medium text-paper sm:text-4xl">
+            {tc("specification")}
           </h2>
-          <ul className="mt-8 flex flex-wrap items-center justify-center gap-2.5">
-            {grades.map((grade) => (
-              <li
-                key={grade}
-                className="rounded-full border border-paper/40 bg-paper/15 px-4 py-2 text-sm font-medium text-paper"
+          <dl className="mt-10 flex flex-col gap-0 overflow-hidden rounded-2xl border border-paper/25">
+            {specRows.map((row, i) => (
+              <div
+                key={row.label}
+                className={`grid grid-cols-[auto_1fr] gap-x-6 gap-y-1 px-5 py-4 sm:grid-cols-[11rem_1fr] ${
+                  i % 2 === 0 ? "bg-paper/8" : ""
+                }`}
               >
-                {grade}
-              </li>
+                <dt className="text-xs font-semibold uppercase tracking-wider text-paper/70">
+                  {row.label}
+                </dt>
+                <dd className="text-sm font-medium text-paper">{row.value}</dd>
+              </div>
             ))}
-          </ul>
+          </dl>
         </Reveal>
       </section>
 
-      {/* 4 — packaging + uses */}
+      {/* 4 — used for + nutrition/price */}
       <section
         className="snap-start relative flex min-h-dvh w-full items-center overflow-hidden px-6 py-24"
         style={{ background: `color-mix(in srgb, ${accent} 10%, var(--paper))` }}
@@ -136,13 +157,13 @@ export function ProductStory({ slug }: { slug: string }) {
         <Reveal className="relative z-10 mx-auto grid w-full max-w-3xl gap-10 sm:grid-cols-2">
           <div>
             <div className="mb-4 h-14 w-14 opacity-80" style={{ color: accent }}>
-              <SackIcon className="h-full w-full" />
+              <BasketIcon className="h-full w-full" />
             </div>
             <p className="text-xs font-semibold uppercase tracking-[0.2em]" style={{ color: accent }}>
-              {tc("packaging")}
+              {tc("usedFor")}
             </p>
             <ul className="mt-4 flex flex-col gap-2.5">
-              {packaging.map((item) => (
+              {usedFor.map((item) => (
                 <li key={item} className="flex items-start gap-2 text-sm text-ink-deep/80">
                   <span
                     className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full"
@@ -153,24 +174,13 @@ export function ProductStory({ slug }: { slug: string }) {
               ))}
             </ul>
           </div>
-          <div>
-            <div className="mb-4 h-14 w-14 opacity-80" style={{ color: accent }}>
-              <BasketIcon className="h-full w-full" />
-            </div>
-            <p className="text-xs font-semibold uppercase tracking-[0.2em]" style={{ color: accent }}>
-              {tc("uses")}
+          <div className="flex flex-col justify-center gap-6 rounded-2xl bg-ink-deep/5 p-6">
+            {nutrition && (
+              <p className="text-sm leading-relaxed text-ink-deep/70">{nutrition}</p>
+            )}
+            <p className="text-sm font-medium leading-relaxed text-ink-deep/80">
+              {tc("priceNote")}
             </p>
-            <ul className="mt-4 flex flex-col gap-2.5">
-              {uses.map((item) => (
-                <li key={item} className="flex items-start gap-2 text-sm text-ink-deep/80">
-                  <span
-                    className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full"
-                    style={{ background: accent }}
-                  />
-                  {item}
-                </li>
-              ))}
-            </ul>
           </div>
         </Reveal>
       </section>

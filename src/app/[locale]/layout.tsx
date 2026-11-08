@@ -68,9 +68,9 @@ export function generateStaticParams() {
 }
 
 export const metadata: Metadata = {
-  title: "Seraj Store | Premium Bulk Dried Nuts, Fruit & Saffron",
+  title: "SERAJ | Afghan Saffron & Nuts in Bulk, from Herat",
   description:
-    "Seraj Store supplies bulk-grade almonds, pistachios, pine nuts, dried figs, and saffron to importers, retailers, and manufacturers worldwide.",
+    "Bulk Afghan saffron (Herat, Super Negin), wild pistachios, almonds, dried figs and pine nuts for manufacturers, packers and importers. From 1 kg.",
 };
 
 export default async function RootLayout({

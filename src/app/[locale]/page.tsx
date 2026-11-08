@@ -7,10 +7,14 @@ import { ArrowUpRight } from "lucide-react";
 export default function HomePage() {
   const th = useTranslations("hero");
   const tg = useTranslations("garden");
-  const tt = useTranslations("trust");
+  const thl = useTranslations("highlights");
+  const two = useTranslations("whyOrigin");
+  const thw = useTranslations("howItWorksHome");
   const tcb = useTranslations("ctaBand");
 
-  const trustItems = tt.raw("items") as { title: string; body: string }[];
+  const highlightItems = thl.raw("items") as { title: string; body: string }[];
+  const whyParagraphs = two.raw("paragraphs") as string[];
+  const howSteps = thw.raw("steps") as { title: string; body: string }[];
 
   return (
     <>
@@ -45,6 +49,9 @@ export default function HomePage() {
               {th("ctaSecondary")}
             </Link>
           </div>
+          <p className="mt-6 text-xs font-medium uppercase tracking-wider text-ink-soft">
+            {th("smallLine")}
+          </p>
         </div>
       </section>
 
@@ -65,10 +72,10 @@ export default function HomePage() {
       <section className="px-4 pt-24 md:pt-32">
         <div className="mx-auto max-w-6xl rounded-[2.5rem] glass-strong p-8 md:p-14">
           <h2 className="font-display text-3xl font-medium text-ink md:text-4xl">
-            {tt("title")}
+            {thl("title")}
           </h2>
-          <div className="mt-10 grid gap-8 sm:grid-cols-2 md:grid-cols-4">
-            {trustItems.map((item, i) => (
+          <div className="mt-10 grid gap-8 sm:grid-cols-3">
+            {highlightItems.map((item, i) => (
               <div key={i}>
                 <span className="font-display text-3xl text-electric-blue">
                   {String(i + 1).padStart(2, "0")}
@@ -78,6 +85,44 @@ export default function HomePage() {
                 </p>
                 <p className="mt-2 text-sm leading-relaxed text-ink-soft">
                   {item.body}
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="px-4 pt-24 md:pt-32">
+        <div className="mx-auto max-w-4xl text-center">
+          <h2 className="font-display text-3xl font-medium text-ink md:text-4xl">
+            {two("heading")}
+          </h2>
+          <div className="mx-auto mt-6 flex max-w-2xl flex-col gap-4 text-start">
+            {whyParagraphs.map((p, i) => (
+              <p key={i} className="leading-relaxed text-ink-soft">
+                {p}
+              </p>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="px-4 pt-24 md:pt-32">
+        <div className="mx-auto max-w-6xl">
+          <h2 className="text-center font-display text-3xl font-medium text-ink md:text-4xl">
+            {thw("heading")}
+          </h2>
+          <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-5">
+            {howSteps.map((step, i) => (
+              <div key={i} className="rounded-[1.75rem] glass p-6">
+                <span className="font-display text-2xl text-electric-blue">
+                  {String(i + 1).padStart(2, "0")}
+                </span>
+                <p className="mt-3 font-display text-base font-medium text-ink">
+                  {step.title}
+                </p>
+                <p className="mt-2 text-sm leading-relaxed text-ink-soft">
+                  {step.body}
                 </p>
               </div>
             ))}

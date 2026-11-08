@@ -1,7 +1,7 @@
 {
   "intro": {
-    "lines": ["From seed", "to shipment —", "a grove we tend by hand."],
-    "subtitle": "Bulk almonds, pistachios, pine nuts, dried figs, and saffron.",
+    "lines": ["Afghan saffron", "and nuts —", "straight from the origin."],
+    "subtitle": "Afghan saffron & nuts, in bulk.",
     "enter": "Enter the Grove"
   },
   "grove": {
@@ -15,144 +15,250 @@
   "nav": {
     "home": "Home",
     "products": "Products",
+    "howToOrder": "How to order",
+    "quality": "Quality",
     "about": "About",
+    "faq": "FAQ",
     "contact": "Contact",
-    "rfq": "Request a Quote"
+    "rfq": "Request a quote"
   },
   "common": {
-    "rfqButton": "Request a Quote",
+    "rfqButton": "Request a quote",
     "learnMore": "Learn more",
     "viewSpec": "View specification",
     "backToProducts": "Back to all products",
     "origin": "Origin",
-    "grades": "Grades available",
-    "packaging": "Packaging options",
-    "uses": "Typical uses",
-    "tapHint": "Tap a plant to explore"
+    "specification": "Specification",
+    "usedFor": "Used for",
+    "priceNote": "Price on request — depends on grade, quantity and the current crop.",
+    "specLabels": {
+      "grade": "Grade",
+      "form": "Form",
+      "minOrder": "Minimum order",
+      "packing": "Packing",
+      "analysis": "Analysis"
+    }
   },
   "hero": {
-    "eyebrow": "Bulk export · Wholesale only",
-    "title": "From the orchard to your production line",
-    "subtitle": "Seraj Store supplies grade-A almonds, pistachios, pine nuts, dried figs, and saffron in bulk — sourced at origin, sampled and graded, packed for export, priced for volume.",
-    "cta": "Request a Quote",
-    "ctaSecondary": "Browse the range"
+    "eyebrow": "Herat, Afghanistan · Wholesale only",
+    "title": "Afghan saffron and nuts, straight from the origin",
+    "subtitle": "Herat saffron (Super Negin), wild Afghan pistachios, almonds, dried figs and pine nuts — supplied in bulk to manufacturers, packers and importers.",
+    "cta": "Request a quote",
+    "ctaSecondary": "See our products",
+    "smallLine": "From 1 kg saffron · From 50 kg nuts · Lab analysis with every sample and lot"
   },
   "garden": {
-    "title": "Our range, from field to freight",
-    "subtitle": "Five origin crops. Every lot sampled, graded, and export-documented."
+    "title": "Five crops, one origin",
+    "subtitle": "Herat saffron, wild pistachios, almonds, dried figs and chilgoza pine nuts."
   },
-  "trust": {
-    "title": "Built for buyers who order by the container",
+  "highlights": {
+    "title": "Why buyers work with us",
     "items": [
       {
-        "title": "Origin-direct sourcing",
-        "body": "We buy directly at the growing regions, cutting out layers of resale so your landed cost stays competitive."
+        "title": "Raw material only",
+        "body": "No retail packing, no private label, no brand of our own. Your brand and your customers stay yours."
       },
       {
-        "title": "Sampled, graded lots",
-        "body": "Every shipment is sampled and graded before it ships, so what you approve is what arrives."
+        "title": "Small minimums",
+        "body": "1 kg on saffron, 50 kg on nuts and dried fruit, so a first order stays simple."
       },
       {
-        "title": "Export-ready packing",
-        "body": "Bulk bags, cartons, or vacuum packaging built for ocean freight, with full export documentation."
-      },
-      {
-        "title": "Flexible MOQs & Incoterms",
-        "body": "From trial pallets to full containers, quoted FOB, CFR, or CIF to suit how you buy."
+        "title": "Tested before you buy",
+        "body": "Laboratory analysis comes with the sample and with every lot we ship."
       }
     ]
   },
+  "whyOrigin": {
+    "heading": "Same saffron belt. A second origin.",
+    "paragraphs": [
+      "Herat and Iranian Khorasan share one saffron-growing belt, one border apart: the same crocus, the same altitude, the same harvest window — without Iranian banking or sanctions exposure.",
+      "Afghanistan is not listed in EU Regulation 2019/1793, so there are no increased official border checks for these products into the EU and EEA.",
+      "Adding Afghan origin next to your current suppliers spreads your crop and price risk."
+    ]
+  },
+  "howItWorksHome": {
+    "heading": "How it works",
+    "steps": [
+      { "title": "Enquiry", "body": "Tell us the product, grade and quantity." },
+      { "title": "Sample & specification", "body": "We send a sample with laboratory analysis." },
+      { "title": "Quote & proforma", "body": "You receive the price and a proforma invoice." },
+      { "title": "Shipping", "body": "Goods are consolidated in Afghanistan and shipped per order, in transit through Türkiye." },
+      { "title": "Delivery", "body": "Delivered to your country's customs, with all documents." }
+    ]
+  },
   "ctaBand": {
-    "title": "Sourcing for a season, or standing supply?",
-    "body": "Tell us the product, grade, and volume you need — we'll come back with a firm quote and lead time.",
-    "button": "Talk to us"
+    "title": "Tell us what you buy.",
+    "body": "Send the product, grade and quantity you normally work with, and we will reply with specification, analysis and price.",
+    "button": "Request a quote"
   },
   "products": {
     "heading": "The range",
-    "subheading": "Five crops, graded to industry standard and packed to order.",
+    "subheading": "Five crops, raw material only, tested with every sample and lot.",
     "almonds": {
       "name": "Almonds",
-      "tagline": "Mamra & Nonpareil grades",
-      "description": "Bulk almonds sourced from Iran's Mamra orchards and California's premium groves, sorted for consistent size and moisture, ready for confectionery, snacking, or nut-milk production.",
-      "origin": "Iran & California, USA",
-      "grades": ["Mamra Super", "Mamra A", "Nonpareil", "Carmel", "In-shell"],
-      "packaging": ["25kg PP bags", "50kg export cartons", "Vacuum-sealed on request"],
-      "uses": ["Confectionery & chocolate", "Snacking", "Nut milk & plant-based dairy", "Bakery"]
+      "tagline": "Afghan almond kernels for bakery, confectionery and paste.",
+      "description": "Afghan almond kernels, sorted to your specification, for manufacturers who need a reliable second origin.",
+      "origin": "Afghanistan",
+      "spec": {
+        "form": "Kernels",
+        "grade": "To your specification",
+        "minOrder": "50 kg",
+        "analysis": "Including aflatoxins, with sample and each lot"
+      },
+      "usedFor": ["Bakery", "Marzipan and almond paste", "Confectionery", "Roasting"],
+      "nutrition": "Almonds contain vitamin E, magnesium, protein and fibre.",
+      "metaDescription": "Bulk Afghan almond kernels for bakery, confectionery and paste. From 50 kg, with laboratory analysis including aflatoxins."
     },
     "pistachios": {
-      "name": "Pistachios",
-      "tagline": "Akbari, Kaleh Ghouchi & Fandoghi",
-      "description": "Iranian pistachios from the growing belts of Kerman and Rafsanjan, offered raw or roasted, in-shell or kernel, at the size grade your production line needs.",
-      "origin": "Kerman & Rafsanjan, Iran",
-      "grades": ["Akbari (jumbo)", "Kaleh Ghouchi", "Fandoghi (round)", "Green kernel"],
-      "packaging": ["10kg vacuum tins", "22.7kg export cartons", "Bulk jumbo bags"],
-      "uses": ["Snacking", "Confectionery", "Ice cream & gelato", "Bakery & ready meals"]
+      "name": "Wild Afghan Pistachios",
+      "tagline": "From wild Afghan trees, not plantations. In shell or kernels.",
+      "description": "Our pistachios come from wild trees in the Afghan mountains, not from irrigated plantations. Smaller nuts with a deep colour and strong flavour.",
+      "origin": "Afghanistan, wild-grown",
+      "spec": {
+        "form": "In shell or shelled kernels",
+        "grade": "To your specification",
+        "minOrder": "50 kg",
+        "packing": "Vacuum-sealed bulk packs, agreed per order",
+        "analysis": "Including aflatoxins, with sample and each lot"
+      },
+      "usedFor": ["Baklava", "Pistachio paste and cream", "Gelato", "Chocolate", "Roasting and snacks"],
+      "nutrition": "Pistachios contain protein, fibre, vitamin B6 and potassium.",
+      "metaDescription": "Bulk Afghan pistachios from wild trees, in shell or as kernels. From 50 kg, with laboratory analysis including aflatoxins."
     },
     "pine-nuts": {
-      "name": "Pine Nuts",
-      "tagline": "Chilgoza & Chinese grades",
-      "description": "Wild-harvested chilgoza pine nuts and cultivated Chinese pine nuts, hand-cracked and vacuum packed to protect their delicate oils in transit.",
-      "origin": "Pakistan / Afghanistan & China",
-      "grades": ["Chilgoza (long grain)", "Chinese short grain", "Chinese long grain"],
-      "packaging": ["1kg & 5kg vacuum pouches", "10kg export cartons"],
-      "uses": ["Pesto & sauces", "Salads & garnish", "Confectionery", "Middle Eastern rice dishes"]
+      "name": "Chilgoza Pine Nuts",
+      "tagline": "From the wild Pinus gerardiana forests.",
+      "description": "Chilgoza is the long pine nut of the wild Pinus gerardiana forests of eastern Afghanistan — a different nut from Mediterranean or Chinese pine nuts.",
+      "origin": "Afghanistan, wild forests",
+      "spec": {
+        "form": "Whole nuts",
+        "grade": "To your specification",
+        "minOrder": "50 kg",
+        "analysis": "With sample and each lot"
+      },
+      "usedFor": ["Speciality retail", "Pesto and sauces", "Bakery", "Middle Eastern and Central Asian cuisine"],
+      "nutrition": "Pine nuts contain zinc, magnesium and unsaturated fats.",
+      "metaDescription": "Bulk Afghan chilgoza pine nuts (Pinus gerardiana), from wild forests. From 50 kg, with laboratory analysis with every sample and lot."
     },
     "dried-figs": {
       "name": "Dried Figs",
-      "tagline": "Estahban sun-dried",
-      "description": "Naturally sun-dried figs from Estahban, Iran and the Aydin valley in Turkey, offered whole, layer-packed, or as a paste base for bakery and health-food production.",
-      "origin": "Estahban, Iran & Aydin, Türkiye",
-      "grades": ["Estahban sun-dried", "Natural whole", "Layer-packed premium"],
-      "packaging": ["5kg & 10kg cartons", "Bulk 20kg cases", "Layer trays on request"],
-      "uses": ["Snacking", "Bakery & confectionery", "Health bars", "Dried fruit mixes"]
+      "tagline": "Whole, sun-dried Afghan figs.",
+      "description": "Whole, sun-dried Afghan figs, supplied in bulk for packers, bakeries and food manufacturers.",
+      "origin": "Afghanistan",
+      "spec": {
+        "form": "Whole dried figs",
+        "grade": "To your specification",
+        "minOrder": "50 kg",
+        "analysis": "Including aflatoxins, with sample and each lot"
+      },
+      "usedFor": ["Retail packing", "Bakery", "Fig paste", "Breakfast and snack mixes"],
+      "nutrition": "Dried figs contain fibre, potassium and calcium.",
+      "metaDescription": "Bulk whole dried figs from Afghanistan. From 50 kg, with laboratory analysis including aflatoxins."
     },
     "saffron": {
-      "name": "Saffron",
-      "tagline": "Sargol, Pushal & Negin",
-      "description": "Khorasan saffron, hand-picked and dried within hours of harvest, graded to ISO 3632 for color, flavor, and aroma strength — from bulk threads to retail-ready packaging.",
-      "origin": "Khorasan, Iran",
-      "grades": ["Sargol (all red)", "Pushal", "Negin (premium strands)", "Bunch (whole flower)"],
-      "packaging": ["1g–1kg retail tins & tubes", "100g–1kg bulk vacuum foil"],
-      "uses": ["Culinary & confectionery", "Beverages", "Pharmaceutical extracts", "Cosmetics"]
+      "name": "Herat Saffron",
+      "tagline": "Super Negin, all-red stigma, whole threads.",
+      "description": "Saffron from Herat, in western Afghanistan — the same saffron belt as Khorasan. Super Negin is the top cut: long, all-red stigmas with no yellow style. Each crocus flower gives only three stigmas, picked by hand.",
+      "origin": "Herat, Afghanistan",
+      "spec": {
+        "grade": "Super Negin, all-red stigma",
+        "form": "Whole threads",
+        "minOrder": "1 kg",
+        "packing": "Vacuum-sealed bulk packs, agreed per order",
+        "analysis": "ISO 3632 (colouring strength / crocin, aroma / safranal, bitterness / picrocrocin, moisture) with sample and each lot"
+      },
+      "usedFor": ["Spice packing", "Rice and paella dishes", "Bakery and saffron buns", "Sweets and mithai", "Gelato", "Drinks and extracts"],
+      "nutrition": "",
+      "metaDescription": "Bulk Afghan saffron from Herat, Super Negin grade, all-red stigma. From 1 kg, with ISO 3632 laboratory analysis with every sample and lot."
     }
   },
+  "howToOrder": {
+    "eyebrow": "How to order",
+    "heading": "From sample to your customs",
+    "intro": "We keep the process simple and transparent, so a first order carries little risk for either side.",
+    "steps": [
+      { "title": "Enquiry", "body": "Send the product, grade and quantity by email or WhatsApp." },
+      { "title": "Sample & specification", "body": "We send a sample with its laboratory analysis. Samples are charged at a small cost." },
+      { "title": "Quote & proforma invoice", "body": "Price confirmed for your quantity and the current crop." },
+      { "title": "Payment", "body": "By agreement: bank-secured payment, or 50% before shipping and 50% after your quality check." },
+      { "title": "Shipping", "body": "Consolidated in Afghanistan, shipped per order in transit through Türkiye." },
+      { "title": "Delivery", "body": "To your country's customs. Clearance and import duties are paid by the buyer." }
+    ],
+    "minOrderNote": "Minimum order: 1 kg saffron · 50 kg per nut or dried-fruit product",
+    "documentsNote": "Documents with every shipment: commercial invoice, packing list, certificate of origin, laboratory analysis of the lot. Other documents your authorities require can be arranged on request."
+  },
+  "quality": {
+    "eyebrow": "Quality",
+    "heading": "Tested, not just promised",
+    "text": "Every sample and every lot comes with laboratory analysis. For saffron this follows ISO 3632: colouring strength (crocin), aroma (safranal), bitterness (picrocrocin) and moisture. For nuts and dried fruit it includes aflatoxins.",
+    "spotHeading": "How to spot real saffron",
+    "spotItems": [
+      "Real Super Negin is all red — yellow or white ends are style, not stigma.",
+      "In water, real saffron releases its golden colour slowly. Instant red colour often means dye.",
+      "Ask for the lab test. A serious supplier will always provide it."
+    ]
+  },
   "about": {
-    "eyebrow": "About Seraj Store",
-    "title": "A direct line to origin",
-    "intro": "Seraj Store is a bulk supplier of premium dried nuts, dried fruit, and saffron, built to serve importers, retailers, manufacturers, and HORECA buyers who need consistent quality at volume.",
-    "body": "We work directly with growers and packing houses across Iran, Central Asia, Türkiye, and the United States, sampling and grading every lot before it ships. Whether you're placing a trial order or setting up standing supply, we quote transparently and document every shipment for smooth customs clearance at your end.",
-    "pointsTitle": "What buyers get working with us",
-    "points": [
-      "One point of contact across five product lines",
-      "Sample-approved lots before shipment",
-      "Custom packaging and private-label options",
-      "Quotes in FOB, CFR, or CIF to match your logistics"
+    "eyebrow": "About SERAJ",
+    "title": "Raw material from the origin",
+    "paragraphs": [
+      "SERAJ is a small export business based in Istanbul, run by Seraj Yaqubi. We source saffron from Herat and nuts and dried fruit from across Afghanistan, and supply them in bulk to manufacturers, packers, importers and wholesalers.",
+      "We sell raw material only. We do no retail packing, no labelling and no private label, and we have no consumer brand of our own — so we never compete with our customers.",
+      "We keep minimums small and test every lot, because we would rather earn a long relationship with a first small order than chase one large one."
+    ]
+  },
+  "faq": {
+    "eyebrow": "FAQ",
+    "heading": "Frequently asked questions",
+    "items": [
+      { "q": "Do you sell to consumers?", "a": "No. We supply businesses in bulk only." },
+      { "q": "What is the minimum order?", "a": "1 kg for saffron, 50 kg for each nut or dried-fruit product." },
+      { "q": "Do you send samples?", "a": "Yes, with laboratory analysis. Samples are charged at a small cost." },
+      { "q": "Where do you deliver?", "a": "To the customs of your country. Clearance and import duties are paid by the buyer." },
+      { "q": "How do you ship?", "a": "Goods are consolidated in Afghanistan and shipped per order, in transit through Türkiye." },
+      { "q": "How can we pay?", "a": "Bank-secured payment, or 50% before shipping and 50% after your quality check — agreed per order." },
+      { "q": "Why are prices not on the website?", "a": "Prices depend on product, grade, quantity and the current crop, so we quote every enquiry individually." },
+      { "q": "Is Afghan saffron affected by EU border checks?", "a": "Afghanistan is not listed in EU Regulation 2019/1793, so there are no increased official border checks for these products." }
     ]
   },
   "contact": {
-    "eyebrow": "Request a Quote",
-    "title": "Tell us what you need",
-    "subtitle": "Share your product, grade, and volume — we'll respond with pricing and lead time.",
+    "eyebrow": "Contact",
+    "title": "Request a quote",
+    "subtitle": "Tell us the product, grade and quantity you need. We usually reply within one working day.",
     "fields": {
-      "name": "Full name",
+      "name": "Your name",
       "company": "Company name",
-      "email": "Work email",
+      "email": "Email",
       "phone": "Phone / WhatsApp",
       "country": "Country",
-      "product": "Product of interest",
-      "quantity": "Estimated quantity",
-      "message": "Additional details"
+      "product": "Product",
+      "quantity": "Quantity",
+      "message": "Message"
     },
     "productPlaceholder": "Select a product",
-    "quantityPlaceholder": "e.g. 1 x 20ft container / month",
-    "submit": "Send inquiry",
-    "success": "Thank you — your inquiry has been received. Our team will respond within one business day."
+    "quantityPlaceholder": "e.g. 5 kg saffron / 500 kg pistachios",
+    "submit": "Send",
+    "success": "Thank you — your enquiry has been received. We usually reply within one working day.",
+    "directHeading": "Direct contact",
+    "email": "support@seraj.store",
+    "whatsapp": "+90 531 960 14 66",
+    "location": "Based in Istanbul, Türkiye"
   },
   "footer": {
-    "tagline": "Bulk almonds, pistachios, pine nuts, dried figs, and saffron — sourced at origin, delivered worldwide.",
+    "tagline": "Afghan saffron & nuts, in bulk.",
     "productsHeading": "Products",
     "companyHeading": "Company",
     "contactHeading": "Contact",
-    "rights": "All rights reserved."
+    "rights": "All rights reserved.",
+    "email": "support@seraj.store",
+    "whatsapp": "WhatsApp +90 531 960 14 66",
+    "location": "Istanbul, Türkiye",
+    "smallPrint": "All products are offered subject to availability of the current crop. Specifications and prices are confirmed at order.",
+    "social": {
+      "instagram": "@o.seraj.store",
+      "tiktok": "@oserajstore",
+      "facebook": "Facebook",
+      "youtube": "YouTube"
+    }
   }
 }

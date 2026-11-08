@@ -9,7 +9,10 @@ import { PaletteSwitcher } from "@/components/palette-switcher";
 const NAV_ITEMS = [
   { href: "/", key: "home" },
   { href: "/products", key: "products" },
+  { href: "/how-to-order", key: "howToOrder" },
+  { href: "/quality", key: "quality" },
   { href: "/about", key: "about" },
+  { href: "/faq", key: "faq" },
 ] as const;
 
 function isRoomRoute(pathname: string) {
@@ -32,10 +35,10 @@ export function SiteHeader() {
           className="font-display text-xl font-medium tracking-tight text-ink"
           onClick={() => setOpen(false)}
         >
-          Seraj Store
+          SERAJ
         </Link>
 
-        <nav className="hidden items-center gap-1 md:flex">
+        <nav className="hidden items-center gap-0.5 lg:flex">
           {NAV_ITEMS.map((item) => {
             const active =
               item.href === "/" ? pathname === "/" : pathname.startsWith(item.href);
@@ -43,7 +46,7 @@ export function SiteHeader() {
               <Link
                 key={item.key}
                 href={item.href}
-                className={`rounded-full px-4 py-2 text-sm font-medium transition-colors ${
+                className={`rounded-full px-3 py-2 text-sm font-medium whitespace-nowrap transition-colors ${
                   active
                     ? "bg-electric-blue/14 text-ink"
                     : "text-ink-soft hover:bg-electric-blue/8 hover:text-ink"
@@ -55,7 +58,7 @@ export function SiteHeader() {
           })}
         </nav>
 
-        <div className="hidden items-center gap-2 md:flex">
+        <div className="hidden items-center gap-2 lg:flex">
           <PaletteSwitcher />
           <LocaleSwitcher locale={locale} pathname={pathname} />
           <Link
@@ -69,7 +72,7 @@ export function SiteHeader() {
         <button
           type="button"
           aria-label="Toggle menu"
-          className="grid h-10 w-10 place-items-center rounded-full text-electric-blue md:hidden"
+          className="grid h-10 w-10 place-items-center rounded-full text-electric-blue lg:hidden"
           onClick={() => setOpen((v) => !v)}
         >
           {open ? <X size={20} /> : <Menu size={20} />}
@@ -77,7 +80,7 @@ export function SiteHeader() {
       </div>
 
       {open && (
-        <div className="mx-auto mt-2 flex max-w-6xl flex-col gap-1 rounded-3xl glass p-4 md:hidden">
+        <div className="mx-auto mt-2 flex max-w-6xl flex-col gap-1 rounded-3xl glass p-4 lg:hidden">
           {NAV_ITEMS.map((item) => (
             <Link
               key={item.key}
