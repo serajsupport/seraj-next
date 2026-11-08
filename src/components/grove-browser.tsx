@@ -51,7 +51,7 @@ export function GroveBrowser() {
               transition={{ duration: 0.4, ease: "easeOut" }}
               className="px-6 py-10 text-center sm:px-12 sm:py-14"
             >
-              <span className="inline-block rounded-full bg-ink/6 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.2em] text-ink-soft">
+              <span className="inline-block rounded-full bg-electric-blue/10 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.2em] text-ink-soft">
                 {tg("chapter")} {String(index + 1).padStart(2, "0")}
               </span>
 
@@ -74,7 +74,7 @@ export function GroveBrowser() {
 
               <Link
                 href={`/products/${product.slug}`}
-                className="mt-7 inline-flex items-center gap-2 rounded-full bg-ink px-6 py-3 text-sm font-semibold text-paper transition-transform hover:scale-[1.03]"
+                className="mt-7 inline-flex items-center gap-2 rounded-full bg-electric-blue px-6 py-3 text-sm font-semibold text-ink transition-transform hover:scale-[1.03]"
               >
                 {tg("enter")}
                 <ArrowUpRight size={16} />
@@ -93,7 +93,7 @@ export function GroveBrowser() {
             aria-label={tp(`${p.slug}.name`)}
             onClick={() => setIndex(i)}
             className={`h-1.5 rounded-full transition-all ${
-              i === index ? "w-6 bg-ink" : "w-1.5 bg-ink/20"
+              i === index ? "w-6 bg-electric-blue" : "w-1.5 bg-electric-blue/25"
             }`}
           />
         ))}

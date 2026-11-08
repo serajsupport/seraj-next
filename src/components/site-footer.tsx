@@ -66,7 +66,7 @@ export function SiteFooter() {
           </div>
         </div>
 
-        <div className="mt-10 flex flex-col-reverse items-center gap-3 border-t border-ink/10 pt-6 text-xs text-ink-soft md:flex-row md:justify-between">
+        <div className="mt-10 flex flex-col-reverse items-center gap-3 border-t border-electric-blue/15 pt-6 text-xs text-ink-soft md:flex-row md:justify-between">
           <p>
             © {new Date().getFullYear()} Seraj Store. {t("rights")}
           </p>

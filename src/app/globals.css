@@ -12,8 +12,8 @@
   --mustard: #d7a13f;
   --mustard-light: #eac887;
   --rust: #8c3623;
-  --ink: #0e0e13;
-  --ink-soft: #4a4a55;
+  --ink: #ff9452;
+  --ink-soft: #c9875a;
   --ink-deep: #09090d;
 
   /* Brand trio: midnight black, electric blue, cantaloupe orange */
@@ -39,17 +39,17 @@
 
   --glass-fill: linear-gradient(
     135deg,
-    rgba(255, 252, 244, 0.62),
-    rgba(255, 250, 240, 0.22)
+    rgba(20, 22, 30, 0.72),
+    rgba(9, 9, 13, 0.42)
   );
   --glass-fill-strong: linear-gradient(
     160deg,
-    rgba(255, 253, 247, 0.78),
-    rgba(255, 248, 232, 0.38)
+    rgba(24, 27, 38, 0.85),
+    rgba(9, 9, 13, 0.55)
   );
-  --glass-border: rgba(255, 255, 255, 0.55);
-  --glass-shadow: 0 12px 40px rgba(42, 35, 24, 0.16),
-    inset 0 1px 0 rgba(255, 255, 255, 0.55);
+  --glass-border: rgba(143, 180, 255, 0.4);
+  --glass-shadow: 0 12px 40px rgba(0, 0, 0, 0.45),
+    inset 0 1px 0 rgba(143, 180, 255, 0.12);
 
   --radius-lg: 28px;
   --radius-md: 18px;
@@ -93,7 +93,7 @@
 }
 
 html {
-  color-scheme: light;
+  color-scheme: dark;
   scroll-behavior: smooth;
 }
 
@@ -103,7 +103,7 @@ html[dir="rtl"] {
 }
 
 body {
-  background: var(--cream);
+  background: var(--midnight);
   color: var(--ink);
   font-family: var(--font-sans);
   position: relative;
@@ -116,21 +116,21 @@ body {
   z-index: -2;
   pointer-events: none;
   background-image:
-    radial-gradient(38rem 30rem at 12% -6%, rgba(47, 111, 239, 0.16), transparent 60%),
-    radial-gradient(34rem 28rem at 92% 8%, rgba(255, 148, 82, 0.2), transparent 60%),
-    radial-gradient(40rem 32rem at 50% 105%, rgba(47, 111, 239, 0.1), transparent 60%),
-    linear-gradient(180deg, var(--paper), var(--cream) 40%, var(--cream-deep));
+    radial-gradient(38rem 30rem at 12% -6%, rgba(47, 111, 239, 0.22), transparent 60%),
+    radial-gradient(34rem 28rem at 92% 8%, rgba(255, 148, 82, 0.16), transparent 60%),
+    radial-gradient(40rem 32rem at 50% 105%, rgba(47, 111, 239, 0.16), transparent 60%),
+    linear-gradient(180deg, #121217, var(--midnight) 40%, #050507);
 }
 
-/* Subtle film-grain texture for the retro feel, on light surfaces */
+/* Film-grain texture, tuned to read on the midnight background */
 .bg-grain {
   position: fixed;
   inset: 0;
   z-index: -1;
   pointer-events: none;
-  opacity: 0.5;
-  mix-blend-mode: multiply;
-  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix type='matrix' values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 0.05 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+  opacity: 0.1;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix type='matrix' values='0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 0.35 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
 }
 
 /* Same grain, tuned to actually read on near-black surfaces (screen blend, not multiply) */
@@ -184,12 +184,12 @@ body {
 .glass-pod::before {
   background: linear-gradient(
     180deg,
-    rgba(255, 255, 255, 0.65) 0%,
-    rgba(255, 255, 255, 0.18) 20%,
-    rgba(255, 255, 255, 0) 40%,
-    rgba(255, 255, 255, 0) 60%,
-    rgba(255, 255, 255, 0.18) 80%,
-    rgba(255, 255, 255, 0.65) 100%
+    rgba(143, 180, 255, 0.55) 0%,
+    rgba(143, 180, 255, 0.16) 20%,
+    rgba(143, 180, 255, 0) 40%,
+    rgba(143, 180, 255, 0) 60%,
+    rgba(143, 180, 255, 0.16) 80%,
+    rgba(143, 180, 255, 0.55) 100%
   );
 }
 
@@ -204,18 +204,18 @@ body {
 .glass-strong::before {
   background: linear-gradient(
     180deg,
-    rgba(255, 255, 255, 0.85) 0%,
-    rgba(255, 255, 255, 0.3) 20%,
-    rgba(255, 255, 255, 0) 40%,
-    rgba(255, 255, 255, 0) 60%,
-    rgba(255, 255, 255, 0.3) 80%,
-    rgba(255, 255, 255, 0.85) 100%
+    rgba(143, 180, 255, 0.75) 0%,
+    rgba(143, 180, 255, 0.26) 20%,
+    rgba(143, 180, 255, 0) 40%,
+    rgba(143, 180, 255, 0) 60%,
+    rgba(143, 180, 255, 0.26) 80%,
+    rgba(143, 180, 255, 0.75) 100%
   );
 }
 
 .glass-pod {
   border-radius: 999px;
-  box-shadow: 0 10px 30px rgba(42, 35, 24, 0.14), inset 0 1px 0 rgba(255, 255, 255, 0.6);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(143, 180, 255, 0.18);
 }
 
 .text-balance {
@@ -223,6 +223,6 @@ body {
 }
 
 ::selection {
-  background: var(--cantaloupe);
+  background: var(--electric-blue);
   color: var(--midnight);
 }

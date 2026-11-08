@@ -44,8 +44,8 @@ export function SiteHeader() {
                 href={item.href}
                 className={`rounded-full px-4 py-2 text-sm font-medium transition-colors ${
                   active
-                    ? "bg-ink/8 text-ink"
-                    : "text-ink-soft hover:bg-ink/5 hover:text-ink"
+                    ? "bg-electric-blue/14 text-ink"
+                    : "text-ink-soft hover:bg-electric-blue/8 hover:text-ink"
                 }`}
               >
                 {t(item.key)}
@@ -58,7 +58,7 @@ export function SiteHeader() {
           <LocaleSwitcher locale={locale} pathname={pathname} />
           <Link
             href="/contact"
-            className="rounded-full bg-cantaloupe px-5 py-2.5 text-sm font-semibold text-midnight shadow-[0_6px_18px_rgba(255,148,82,0.4)] transition-transform hover:scale-[1.03]"
+            className="rounded-full bg-electric-blue px-5 py-2.5 text-sm font-semibold text-ink shadow-[0_6px_18px_rgba(47,111,239,0.4)] transition-transform hover:scale-[1.03]"
           >
             {t("rfq")}
           </Link>
@@ -67,7 +67,7 @@ export function SiteHeader() {
         <button
           type="button"
           aria-label="Toggle menu"
-          className="grid h-10 w-10 place-items-center rounded-full text-ink md:hidden"
+          className="grid h-10 w-10 place-items-center rounded-full text-electric-blue md:hidden"
           onClick={() => setOpen((v) => !v)}
         >
           {open ? <X size={20} /> : <Menu size={20} />}
@@ -81,7 +81,7 @@ export function SiteHeader() {
               key={item.key}
               href={item.href}
               onClick={() => setOpen(false)}
-              className="rounded-2xl px-4 py-3 text-base font-medium text-ink hover:bg-ink/5"
+              className="rounded-2xl px-4 py-3 text-base font-medium text-ink hover:bg-electric-blue/8"
             >
               {t(item.key)}
             </Link>
@@ -89,7 +89,7 @@ export function SiteHeader() {
           <Link
             href="/contact"
             onClick={() => setOpen(false)}
-            className="mt-1 rounded-2xl bg-cantaloupe px-4 py-3 text-center text-base font-semibold text-midnight"
+            className="mt-1 rounded-2xl bg-electric-blue px-4 py-3 text-center text-base font-semibold text-ink"
           >
             {t("rfq")}
           </Link>
@@ -110,12 +110,12 @@ function LocaleSwitcher({
   pathname: string;
 }) {
   return (
-    <div className="flex items-center gap-1 rounded-full bg-ink/5 p-1 text-xs font-semibold">
+    <div className="flex items-center gap-1 rounded-full bg-electric-blue/10 p-1 text-xs font-semibold">
       <Link
         href={pathname}
         locale="en"
         className={`rounded-full px-3 py-1.5 transition-colors ${
-          locale === "en" ? "bg-paper text-ink shadow-sm" : "text-ink-soft"
+          locale === "en" ? "bg-electric-blue text-ink shadow-sm" : "text-ink-soft"
         }`}
       >
         EN
@@ -124,7 +124,7 @@ function LocaleSwitcher({
         href={pathname}
         locale="ar"
         className={`rounded-full px-3 py-1.5 transition-colors ${
-          locale === "ar" ? "bg-paper text-ink shadow-sm" : "text-ink-soft"
+          locale === "ar" ? "bg-electric-blue text-ink shadow-sm" : "text-ink-soft"
         }`}
       >
         عربي

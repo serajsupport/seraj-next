@@ -9,7 +9,7 @@ export default function ContactPage() {
     <section className="px-4 pt-14 pb-24 md:pt-20">
       <div className="mx-auto max-w-3xl">
         <div className="text-center">
-          <span className="inline-block rounded-full glass px-4 py-1.5 text-xs font-semibold uppercase tracking-wider text-electric-blue-dark">
+          <span className="inline-block rounded-full glass px-4 py-1.5 text-xs font-semibold uppercase tracking-wider text-ink">
             {t("eyebrow")}
           </span>
           <h1 className="mt-6 font-display text-4xl font-medium text-ink md:text-5xl">

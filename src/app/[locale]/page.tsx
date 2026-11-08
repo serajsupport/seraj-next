@@ -18,7 +18,7 @@ export default function HomePage() {
 
       <section className="px-4 pt-14 md:pt-20">
         <div className="mx-auto max-w-4xl text-center">
-          <span className="inline-block rounded-full glass px-4 py-1.5 text-xs font-semibold uppercase tracking-wider text-electric-blue-dark">
+          <span className="inline-block rounded-full glass px-4 py-1.5 text-xs font-semibold uppercase tracking-wider text-ink">
             {th("eyebrow")}
           </span>
           <h1 className="text-balance mt-6 font-display text-[clamp(2.5rem,6vw,5.5rem)] font-medium leading-[0.98] tracking-[-0.015em] text-ink">
@@ -30,7 +30,7 @@ export default function HomePage() {
           <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
             <Link
               href="/contact"
-              className="group inline-flex items-center gap-2 rounded-full bg-cantaloupe px-6 py-3.5 text-sm font-semibold text-midnight shadow-[0_10px_30px_rgba(255,148,82,0.4)] transition-transform hover:scale-[1.03]"
+              className="group inline-flex items-center gap-2 rounded-full bg-electric-blue px-6 py-3.5 text-sm font-semibold text-ink shadow-[0_10px_30px_rgba(47,111,239,0.4)] transition-transform hover:scale-[1.03]"
             >
               {th("cta")}
               <ArrowUpRight
@@ -93,7 +93,7 @@ export default function HomePage() {
           <p className="mx-auto mt-4 max-w-xl text-ink-soft">{tcb("body")}</p>
           <Link
             href="/contact"
-            className="mt-8 inline-flex items-center gap-2 rounded-full bg-electric-blue px-6 py-3.5 text-sm font-semibold text-paper shadow-[0_10px_30px_rgba(47,111,239,0.35)] transition-transform hover:scale-[1.03]"
+            className="mt-8 inline-flex items-center gap-2 rounded-full bg-electric-blue px-6 py-3.5 text-sm font-semibold text-ink shadow-[0_10px_30px_rgba(47,111,239,0.35)] transition-transform hover:scale-[1.03]"
           >
             {tcb("button")}
             <ArrowUpRight size={16} />

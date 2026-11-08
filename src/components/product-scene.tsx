@@ -122,7 +122,7 @@ export function ProductScene({ slug }: { slug: string }) {
 
         <Link
           href={`/contact?product=${product.slug}`}
-          className="inline-flex items-center gap-2 rounded-full bg-cantaloupe px-5 py-3 text-sm font-semibold text-midnight shadow-[0_10px_30px_rgba(255,148,82,0.4)] transition-transform hover:scale-[1.03] sm:px-6 sm:py-3.5"
+          className="inline-flex items-center gap-2 rounded-full bg-electric-blue px-5 py-3 text-sm font-semibold text-ink shadow-[0_10px_30px_rgba(47,111,239,0.4)] transition-transform hover:scale-[1.03] sm:px-6 sm:py-3.5"
         >
           {tc("rfqButton")}
           <ArrowUpRight size={16} />
@@ -141,11 +141,10 @@ export function ProductScene({ slug }: { slug: string }) {
         open={panel === "about"}
         onClose={() => setPanel(null)}
         eyebrow={t("tagline")}
-        eyebrowClassName={accentText[product.accent]}
         title={t("name")}
       >
         <p className="leading-relaxed text-ink-soft">{t("description")}</p>
-        <div className="mt-5 rounded-2xl bg-ink/5 px-4 py-3">
+        <div className="mt-5 rounded-2xl bg-electric-blue/8 px-4 py-3">
           <p className="text-xs font-semibold uppercase tracking-wider text-ink-soft">
             {tc("origin")}
           </p>
@@ -157,7 +156,6 @@ export function ProductScene({ slug }: { slug: string }) {
         open={panel === "grades"}
         onClose={() => setPanel(null)}
         eyebrow={t("name")}
-        eyebrowClassName={accentText[product.accent]}
         title={tc("grades")}
       >
         <ChipList items={grades} dotClassName={accentBg[product.accent]} />
@@ -167,7 +165,6 @@ export function ProductScene({ slug }: { slug: string }) {
         open={panel === "packaging"}
         onClose={() => setPanel(null)}
         eyebrow={t("name")}
-        eyebrowClassName={accentText[product.accent]}
         title={tc("packaging")}
       >
         <ChipList items={packaging} dotClassName={accentBg[product.accent]} />
@@ -183,7 +180,7 @@ export function ProductScene({ slug }: { slug: string }) {
 function ChipList({
   items,
   className,
-  dotClassName = "bg-cantaloupe",
+  dotClassName = "bg-electric-blue",
 }: {
   items: string[];
   className?: string;

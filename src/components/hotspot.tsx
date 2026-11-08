@@ -8,7 +8,7 @@ export function Hotspot({
   style,
   onClick,
   label,
-  dotClassName = "bg-cantaloupe",
+  dotClassName = "bg-electric-blue",
 }: {
   style: React.CSSProperties;
   onClick: () => void;
@@ -35,7 +35,7 @@ export function HotspotSheet({
   open,
   onClose,
   eyebrow,
-  eyebrowClassName = "text-electric-blue-dark",
+  eyebrowClassName = "text-ink",
   title,
   children,
 }: {
@@ -56,7 +56,7 @@ export function HotspotSheet({
           exit={{ opacity: 0 }}
         >
           <motion.div
-            className="absolute inset-0 bg-ink/30 backdrop-blur-sm"
+            className="absolute inset-0 bg-midnight/60 backdrop-blur-sm"
             onClick={onClose}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -73,7 +73,7 @@ export function HotspotSheet({
               type="button"
               onClick={onClose}
               aria-label="Close"
-              className="absolute end-5 top-5 grid h-9 w-9 place-items-center rounded-full bg-ink/8 text-ink transition-transform hover:scale-105"
+              className="absolute end-5 top-5 grid h-9 w-9 place-items-center rounded-full bg-electric-blue/10 text-electric-blue transition-transform hover:scale-105"
             >
               <X size={16} />
             </button>
