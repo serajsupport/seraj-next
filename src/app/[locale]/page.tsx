@@ -21,7 +21,7 @@ export default function HomePage() {
           <span className="inline-block rounded-full glass px-4 py-1.5 text-xs font-semibold uppercase tracking-wider text-terracotta-dark">
             {th("eyebrow")}
           </span>
-          <h1 className="text-balance mt-6 font-display text-4xl font-medium leading-tight text-ink sm:text-5xl md:text-6xl">
+          <h1 className="text-balance mt-6 font-display text-[clamp(2.5rem,6vw,5.5rem)] font-medium leading-[0.98] tracking-[-0.015em] text-ink">
             {th("title")}
           </h1>
           <p className="text-balance mx-auto mt-5 max-w-2xl text-base leading-relaxed text-ink-soft md:text-lg">

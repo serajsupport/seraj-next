@@ -24,23 +24,31 @@ export function IntroGate() {
       {open && (
         <motion.div
           className="fixed inset-0 z-[60] flex flex-col items-center justify-center overflow-hidden px-6 text-center"
-          style={{ background: "linear-gradient(165deg, var(--ink), var(--olive-dark))" }}
+          style={{
+            background:
+              "radial-gradient(60rem 40rem at 50% -10%, rgba(215,161,63,0.1), transparent 65%), radial-gradient(50rem 36rem at 90% 100%, rgba(74,90,55,0.14), transparent 70%), var(--ink-deep)",
+          }}
           exit={{ opacity: 0 }}
           transition={{ duration: 0.6, ease: "easeInOut" }}
         >
-          <div className="bg-grain absolute inset-0 opacity-30" />
+          <div className="bg-grain-dark" />
 
-          <div className="relative max-w-2xl">
+          <div className="relative max-w-3xl">
             {lines.map((line, i) => (
-              <motion.p
-                key={i}
-                initial={{ opacity: 0, y: 28 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.7, delay: 0.25 + i * 0.18, ease: "easeOut" }}
-                className="text-balance font-display text-3xl font-medium leading-tight text-paper sm:text-5xl"
-              >
-                {line}
-              </motion.p>
+              <div key={i} className="overflow-hidden">
+                <motion.p
+                  initial={{ y: "110%" }}
+                  animate={{ y: "0%" }}
+                  transition={{
+                    duration: 0.8,
+                    delay: 0.25 + i * 0.15,
+                    ease: [0.22, 1, 0.36, 1],
+                  }}
+                  className="text-balance font-display text-[clamp(2.25rem,7vw,4.75rem)] font-medium leading-[0.98] tracking-[-0.01em] text-paper"
+                >
+                  {line}
+                </motion.p>
+              </div>
             ))}
 
             <motion.p
@@ -48,9 +56,9 @@ export function IntroGate() {
               animate={{ opacity: 1, y: 0 }}
               transition={{
                 duration: 0.6,
-                delay: 0.25 + lines.length * 0.18 + 0.15,
+                delay: 0.25 + lines.length * 0.15 + 0.15,
               }}
-              className="mt-6 text-sm text-paper/70 sm:text-base"
+              className="mt-7 text-sm text-paper/60 sm:text-base"
             >
               {t("subtitle")}
             </motion.p>
@@ -61,10 +69,10 @@ export function IntroGate() {
               animate={{ opacity: 1, y: 0 }}
               transition={{
                 duration: 0.6,
-                delay: 0.25 + lines.length * 0.18 + 0.35,
+                delay: 0.25 + lines.length * 0.15 + 0.35,
               }}
               onClick={() => setOpen(false)}
-              className="mt-9 inline-flex items-center gap-2 rounded-full bg-paper px-6 py-3.5 text-sm font-semibold text-ink transition-transform hover:scale-[1.03]"
+              className="mt-9 inline-flex items-center gap-2 rounded-full bg-paper px-6 py-3.5 text-sm font-semibold text-ink transition-transform hover:scale-[1.03] active:scale-[0.97]"
             >
               <Sprout size={16} />
               {t("enter")}

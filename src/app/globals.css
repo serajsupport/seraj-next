@@ -14,6 +14,7 @@
   --rust: #8c3623;
   --ink: #2a2318;
   --ink-soft: #55492f;
+  --ink-deep: #14130d;
 
   /* Per-product accents, each tied to that crop's real color */
   --almond: #c68a93;
@@ -60,6 +61,7 @@
   --color-rust: var(--rust);
   --color-ink: var(--ink);
   --color-ink-soft: var(--ink-soft);
+  --color-ink-deep: var(--ink-deep);
   --color-almond: var(--almond);
   --color-almond-dark: var(--almond-dark);
   --color-pistachio: var(--pistachio);
@@ -104,7 +106,7 @@ body {
     linear-gradient(180deg, var(--paper), var(--cream) 40%, var(--cream-deep));
 }
 
-/* Subtle film-grain texture for the retro feel */
+/* Subtle film-grain texture for the retro feel, on light surfaces */
 .bg-grain {
   position: fixed;
   inset: 0;
@@ -115,32 +117,89 @@ body {
   background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix type='matrix' values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 0.05 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
 }
 
-.glass {
+/* Same grain, tuned to actually read on near-black surfaces (screen blend, not multiply) */
+.bg-grain-dark {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.12;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix type='matrix' values='0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 0.4 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+}
+
+/*
+ * Liquid glass: a translucent fill plus a gradient-border rim-light,
+ * masked so only a hairline shows (the border catches light top/bottom,
+ * fades on the sides — what reads as "glass" rather than flat frosted).
+ */
+.glass,
+.glass-strong,
+.glass-pod {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+}
+
+.glass::before,
+.glass-strong::before,
+.glass-pod::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  border-radius: inherit;
+  padding: 1.4px;
+  pointer-events: none;
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+}
+
+.glass,
+.glass-pod {
   background: var(--glass-fill);
   backdrop-filter: blur(20px) saturate(150%);
   -webkit-backdrop-filter: blur(20px) saturate(150%);
-  border: 1px solid var(--glass-border);
   box-shadow: var(--glass-shadow);
   border-radius: var(--radius-lg);
+}
+
+.glass::before,
+.glass-pod::before {
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.65) 0%,
+    rgba(255, 255, 255, 0.18) 20%,
+    rgba(255, 255, 255, 0) 40%,
+    rgba(255, 255, 255, 0) 60%,
+    rgba(255, 255, 255, 0.18) 80%,
+    rgba(255, 255, 255, 0.65) 100%
+  );
 }
 
 .glass-strong {
   background: var(--glass-fill-strong);
   backdrop-filter: blur(24px) saturate(160%);
   -webkit-backdrop-filter: blur(24px) saturate(160%);
-  border: 1px solid var(--glass-border);
   box-shadow: var(--glass-shadow);
   border-radius: var(--radius-lg);
 }
 
+.glass-strong::before {
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.85) 0%,
+    rgba(255, 255, 255, 0.3) 20%,
+    rgba(255, 255, 255, 0) 40%,
+    rgba(255, 255, 255, 0) 60%,
+    rgba(255, 255, 255, 0.3) 80%,
+    rgba(255, 255, 255, 0.85) 100%
+  );
+}
+
 .glass-pod {
-  background: var(--glass-fill);
-  backdrop-filter: blur(16px) saturate(150%);
-  -webkit-backdrop-filter: blur(16px) saturate(150%);
-  border: 1px solid var(--glass-border);
-  box-shadow: 0 10px 30px rgba(42, 35, 24, 0.14),
-    inset 0 1px 0 rgba(255, 255, 255, 0.6);
   border-radius: 999px;
+  box-shadow: 0 10px 30px rgba(42, 35, 24, 0.14), inset 0 1px 0 rgba(255, 255, 255, 0.6);
 }
 
 .text-balance {
