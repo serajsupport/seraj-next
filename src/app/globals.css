@@ -12,9 +12,18 @@
   --mustard: #d7a13f;
   --mustard-light: #eac887;
   --rust: #8c3623;
-  --ink: #2a2318;
-  --ink-soft: #55492f;
-  --ink-deep: #14130d;
+  --ink: #0e0e13;
+  --ink-soft: #4a4a55;
+  --ink-deep: #09090d;
+
+  /* Brand trio: midnight black, electric blue, cantaloupe orange */
+  --midnight: #09090d;
+  --electric-blue: #2f6fef;
+  --electric-blue-dark: #1d4bbd;
+  --electric-blue-light: #8fb4ff;
+  --cantaloupe: #ff9452;
+  --cantaloupe-dark: #c86a28;
+  --cantaloupe-light: #ffc191;
 
   /* Per-product accents, each tied to that crop's real color */
   --almond: #c68a93;
@@ -62,6 +71,13 @@
   --color-ink: var(--ink);
   --color-ink-soft: var(--ink-soft);
   --color-ink-deep: var(--ink-deep);
+  --color-midnight: var(--midnight);
+  --color-electric-blue: var(--electric-blue);
+  --color-electric-blue-dark: var(--electric-blue-dark);
+  --color-electric-blue-light: var(--electric-blue-light);
+  --color-cantaloupe: var(--cantaloupe);
+  --color-cantaloupe-dark: var(--cantaloupe-dark);
+  --color-cantaloupe-light: var(--cantaloupe-light);
   --color-almond: var(--almond);
   --color-almond-dark: var(--almond-dark);
   --color-pistachio: var(--pistachio);
@@ -93,16 +109,16 @@ body {
   position: relative;
 }
 
-/* Warm retro gradient mesh backdrop, fixed behind all content */
+/* Gradient mesh backdrop, fixed behind all content */
 .bg-mesh {
   position: fixed;
   inset: 0;
   z-index: -2;
   pointer-events: none;
   background-image:
-    radial-gradient(38rem 30rem at 12% -6%, rgba(215, 161, 63, 0.35), transparent 60%),
-    radial-gradient(34rem 28rem at 92% 8%, rgba(193, 90, 46, 0.28), transparent 60%),
-    radial-gradient(40rem 32rem at 50% 105%, rgba(74, 90, 55, 0.24), transparent 60%),
+    radial-gradient(38rem 30rem at 12% -6%, rgba(47, 111, 239, 0.16), transparent 60%),
+    radial-gradient(34rem 28rem at 92% 8%, rgba(255, 148, 82, 0.2), transparent 60%),
+    radial-gradient(40rem 32rem at 50% 105%, rgba(47, 111, 239, 0.1), transparent 60%),
     linear-gradient(180deg, var(--paper), var(--cream) 40%, var(--cream-deep));
 }
 
@@ -207,6 +223,6 @@ body {
 }
 
 ::selection {
-  background: var(--mustard);
-  color: var(--ink);
+  background: var(--cantaloupe);
+  color: var(--midnight);
 }

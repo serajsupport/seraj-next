@@ -7,7 +7,7 @@ import { PRODUCTS } from "@/data/products";
 import { ArrowUpRight, CheckCircle2 } from "lucide-react";
 
 const inputClass =
-  "w-full rounded-2xl border border-ink/10 bg-paper/70 px-4 py-3 text-sm text-ink placeholder:text-ink-soft/60 outline-none transition-colors focus:border-terracotta/60 focus:ring-2 focus:ring-terracotta/20";
+  "w-full rounded-2xl border border-ink/10 bg-paper/70 px-4 py-3 text-sm text-ink placeholder:text-ink-soft/60 outline-none transition-colors focus:border-electric-blue/60 focus:ring-2 focus:ring-electric-blue/20";
 
 export function RfqForm() {
   const t = useTranslations("contact");
@@ -38,7 +38,7 @@ export function RfqForm() {
   if (status === "sent") {
     return (
       <div className="glass-strong flex flex-col items-center gap-4 p-10 text-center md:p-14">
-        <span className="grid h-14 w-14 place-items-center rounded-full bg-olive/15 text-olive">
+        <span className="grid h-14 w-14 place-items-center rounded-full bg-electric-blue/15 text-electric-blue">
           <CheckCircle2 size={28} />
         </span>
         <p className="max-w-md text-ink">{t("success")}</p>
@@ -98,7 +98,7 @@ export function RfqForm() {
       <button
         type="submit"
         disabled={status === "loading"}
-        className="mt-2 inline-flex w-fit items-center gap-2 rounded-full bg-terracotta px-6 py-3.5 text-sm font-semibold text-paper shadow-[0_10px_30px_rgba(140,54,35,0.35)] transition-transform hover:scale-[1.03] disabled:opacity-60"
+        className="mt-2 inline-flex w-fit items-center gap-2 rounded-full bg-cantaloupe px-6 py-3.5 text-sm font-semibold text-midnight shadow-[0_10px_30px_rgba(255,148,82,0.4)] transition-transform hover:scale-[1.03] disabled:opacity-60"
       >
         {t("submit")}
         <ArrowUpRight size={16} />

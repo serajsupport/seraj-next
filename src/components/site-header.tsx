@@ -58,7 +58,7 @@ export function SiteHeader() {
           <LocaleSwitcher locale={locale} pathname={pathname} />
           <Link
             href="/contact"
-            className="rounded-full bg-terracotta px-5 py-2.5 text-sm font-semibold text-paper shadow-[0_6px_18px_rgba(140,54,35,0.35)] transition-transform hover:scale-[1.03]"
+            className="rounded-full bg-cantaloupe px-5 py-2.5 text-sm font-semibold text-midnight shadow-[0_6px_18px_rgba(255,148,82,0.4)] transition-transform hover:scale-[1.03]"
           >
             {t("rfq")}
           </Link>
@@ -89,7 +89,7 @@ export function SiteHeader() {
           <Link
             href="/contact"
             onClick={() => setOpen(false)}
-            className="mt-1 rounded-2xl bg-terracotta px-4 py-3 text-center text-base font-semibold text-paper"
+            className="mt-1 rounded-2xl bg-cantaloupe px-4 py-3 text-center text-base font-semibold text-midnight"
           >
             {t("rfq")}
           </Link>

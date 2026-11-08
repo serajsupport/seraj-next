@@ -26,7 +26,7 @@ export function IntroGate() {
           className="fixed inset-0 z-[60] flex flex-col items-center justify-center overflow-hidden px-6 text-center"
           style={{
             background:
-              "radial-gradient(60rem 40rem at 50% -10%, rgba(215,161,63,0.1), transparent 65%), radial-gradient(50rem 36rem at 90% 100%, rgba(74,90,55,0.14), transparent 70%), var(--ink-deep)",
+              "radial-gradient(60rem 40rem at 50% -10%, rgba(47,111,239,0.14), transparent 65%), radial-gradient(50rem 36rem at 90% 100%, rgba(255,148,82,0.12), transparent 70%), var(--midnight)",
           }}
           exit={{ opacity: 0 }}
           transition={{ duration: 0.6, ease: "easeInOut" }}

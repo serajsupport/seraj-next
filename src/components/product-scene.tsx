@@ -122,7 +122,7 @@ export function ProductScene({ slug }: { slug: string }) {
 
         <Link
           href={`/contact?product=${product.slug}`}
-          className="inline-flex items-center gap-2 rounded-full bg-terracotta px-5 py-3 text-sm font-semibold text-paper shadow-[0_10px_30px_rgba(140,54,35,0.35)] transition-transform hover:scale-[1.03] sm:px-6 sm:py-3.5"
+          className="inline-flex items-center gap-2 rounded-full bg-cantaloupe px-5 py-3 text-sm font-semibold text-midnight shadow-[0_10px_30px_rgba(255,148,82,0.4)] transition-transform hover:scale-[1.03] sm:px-6 sm:py-3.5"
         >
           {tc("rfqButton")}
           <ArrowUpRight size={16} />
@@ -183,7 +183,7 @@ export function ProductScene({ slug }: { slug: string }) {
 function ChipList({
   items,
   className,
-  dotClassName = "bg-terracotta",
+  dotClassName = "bg-cantaloupe",
 }: {
   items: string[];
   className?: string;

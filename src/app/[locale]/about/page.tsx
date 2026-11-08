@@ -10,7 +10,7 @@ export default function AboutPage() {
   return (
     <section className="px-4 pt-14 pb-24 md:pt-20">
       <div className="mx-auto max-w-4xl">
-        <span className="inline-block rounded-full glass px-4 py-1.5 text-xs font-semibold uppercase tracking-wider text-terracotta-dark">
+        <span className="inline-block rounded-full glass px-4 py-1.5 text-xs font-semibold uppercase tracking-wider text-electric-blue-dark">
           {t("eyebrow")}
         </span>
         <h1 className="mt-6 font-display text-4xl font-medium text-ink md:text-5xl">
@@ -30,7 +30,7 @@ export default function AboutPage() {
           <ul className="mt-6 grid gap-4 sm:grid-cols-2">
             {points.map((point) => (
               <li key={point} className="flex items-start gap-3">
-                <span className="mt-0.5 grid h-6 w-6 shrink-0 place-items-center rounded-full bg-olive/15 text-olive">
+                <span className="mt-0.5 grid h-6 w-6 shrink-0 place-items-center rounded-full bg-electric-blue/15 text-electric-blue">
                   <Check size={14} />
                 </span>
                 <span className="text-sm leading-relaxed text-ink">{point}</span>
@@ -41,7 +41,7 @@ export default function AboutPage() {
 
         <Link
           href="/contact"
-          className="mt-10 inline-flex items-center gap-2 rounded-full bg-terracotta px-6 py-3.5 text-sm font-semibold text-paper shadow-[0_10px_30px_rgba(140,54,35,0.35)] transition-transform hover:scale-[1.03]"
+          className="mt-10 inline-flex items-center gap-2 rounded-full bg-cantaloupe px-6 py-3.5 text-sm font-semibold text-midnight shadow-[0_10px_30px_rgba(255,148,82,0.4)] transition-transform hover:scale-[1.03]"
         >
           {tc("rfqButton")}
           <ArrowUpRight size={16} />

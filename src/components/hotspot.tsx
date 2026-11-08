@@ -8,7 +8,7 @@ export function Hotspot({
   style,
   onClick,
   label,
-  dotClassName = "bg-terracotta",
+  dotClassName = "bg-cantaloupe",
 }: {
   style: React.CSSProperties;
   onClick: () => void;
@@ -35,7 +35,7 @@ export function HotspotSheet({
   open,
   onClose,
   eyebrow,
-  eyebrowClassName = "text-terracotta-dark",
+  eyebrowClassName = "text-electric-blue-dark",
   title,
   children,
 }: {
