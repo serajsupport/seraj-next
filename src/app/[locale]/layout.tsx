@@ -15,6 +15,7 @@ import { setRequestLocale } from "next-intl/server";
 import { routing } from "@/i18n/routing";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
+import { SmoothScroll } from "@/components/smooth-scroll";
 import "../globals.css";
 
 const fraunces = Fraunces({
@@ -101,6 +102,7 @@ export default async function RootLayout({
         />
       </head>
       <body className="min-h-full flex flex-col">
+        <SmoothScroll />
         <div className="bg-mesh" />
         <div className="bg-grain" />
         <NextIntlClientProvider>

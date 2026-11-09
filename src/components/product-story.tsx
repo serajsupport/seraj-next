@@ -51,7 +51,7 @@ export function ProductStory({ slug }: { slug: string }) {
   ];
 
   return (
-    <div className="snap-y snap-proximity">
+    <div>
       {/* persistent chrome */}
       <div className="fixed inset-x-0 top-0 z-40 flex items-center justify-between p-5">
         <Link
@@ -68,7 +68,7 @@ export function ProductStory({ slug }: { slug: string }) {
 
       {/* 1 — hero */}
       <section
-        className="snap-start relative flex h-dvh w-full items-center justify-center overflow-hidden px-6 text-center"
+        className="relative flex h-dvh w-full items-center justify-center overflow-hidden px-6 text-center"
         style={{ background: `linear-gradient(165deg, var(--midnight), color-mix(in srgb, ${accent} 32%, var(--midnight)))` }}
       >
         <Parallax speed={0.08} className="pointer-events-none absolute left-1/2 top-[8%] h-[70%] w-[70%] max-w-xl -translate-x-1/2 opacity-[0.16]">
@@ -98,7 +98,7 @@ export function ProductStory({ slug }: { slug: string }) {
 
       {/* 2 — origin / description */}
       <section
-        className="snap-start relative flex min-h-dvh w-full items-center overflow-hidden px-6 py-24"
+        className="relative flex min-h-dvh w-full items-center overflow-hidden px-6 py-24"
         style={{ background: `color-mix(in srgb, ${accent} 14%, var(--paper))` }}
       >
         <Parallax
@@ -128,7 +128,7 @@ export function ProductStory({ slug }: { slug: string }) {
 
       {/* 3 — specification (statement block) */}
       <section
-        className="snap-start relative flex min-h-dvh w-full items-center overflow-hidden px-6 py-24"
+        className="relative flex min-h-dvh w-full items-center overflow-hidden px-6 py-24"
         style={{ background: `color-mix(in srgb, ${accent} 75%, var(--ink-deep))` }}
       >
         <Reveal className="relative z-10 mx-auto w-full max-w-xl">
@@ -165,7 +165,7 @@ export function ProductStory({ slug }: { slug: string }) {
 
       {/* 4 — used for + nutrition/price */}
       <section
-        className="snap-start relative flex min-h-dvh w-full items-center overflow-hidden px-6 py-24"
+        className="relative flex min-h-dvh w-full items-center overflow-hidden px-6 py-24"
         style={{ background: `color-mix(in srgb, ${accent} 10%, var(--paper))` }}
       >
         <Parallax
@@ -209,7 +209,7 @@ export function ProductStory({ slug }: { slug: string }) {
 
       {/* 5 — cta + nav */}
       <section
-        className="snap-start relative flex min-h-dvh w-full flex-col items-center justify-center gap-10 overflow-hidden px-6 py-24 text-center"
+        className="relative flex min-h-dvh w-full flex-col items-center justify-center gap-10 overflow-hidden px-6 py-24 text-center"
         style={{ background: `linear-gradient(195deg, color-mix(in srgb, ${accent} 26%, var(--midnight)), var(--midnight))` }}
       >
         <Reveal>

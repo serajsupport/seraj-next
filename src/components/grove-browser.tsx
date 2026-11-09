@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
 import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
@@ -8,8 +8,11 @@ import { PRODUCTS } from "@/data/products";
 import { accentText, accentBg } from "@/lib/accent";
 import { ArrowUpRight, ChevronLeft, ChevronRight } from "lucide-react";
 
+const AUTO_ADVANCE_MS = 4500;
+
 export function GroveBrowser() {
   const [index, setIndex] = useState(0);
+  const [paused, setPaused] = useState(false);
   const tp = useTranslations("products");
   const tg = useTranslations("grove");
   const product = PRODUCTS[index];
@@ -19,8 +22,36 @@ export function GroveBrowser() {
     setIndex((i) => (i + delta + total) % total);
   }
 
+  const touchStartX = useRef<number | null>(null);
+
+  useEffect(() => {
+    if (paused) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    const id = setInterval(() => {
+      setIndex((i) => (i + 1) % total);
+    }, AUTO_ADVANCE_MS);
+    return () => clearInterval(id);
+  }, [paused, total]);
+
   return (
-    <div className="relative mx-auto max-w-3xl">
+    <div
+      className="relative mx-auto max-w-3xl"
+      onMouseEnter={() => setPaused(true)}
+      onMouseLeave={() => setPaused(false)}
+      onTouchStart={(e) => {
+        setPaused(true);
+        touchStartX.current = e.touches[0].clientX;
+      }}
+      onTouchEnd={(e) => {
+        const start = touchStartX.current;
+        if (start !== null) {
+          const delta = e.changedTouches[0].clientX - start;
+          if (Math.abs(delta) > 40) go(delta > 0 ? -1 : 1);
+        }
+        touchStartX.current = null;
+        setPaused(false);
+      }}
+    >
       <button
         type="button"
         onClick={() => go(-1)}
