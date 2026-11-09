@@ -75,21 +75,13 @@ export function ProductStory({ slug }: { slug: string }) {
           <product.Icon className="h-full w-full text-ink" />
         </Parallax>
         <Reveal className="relative z-10 max-w-2xl">
-          <motion.div
-            initial={{ y: -160, rotate: -10, opacity: 0 }}
-            animate={{ y: 0, rotate: -3, opacity: 1 }}
-            transition={{ type: "spring", stiffness: 110, damping: 13, delay: 0.3 }}
-            className="relative mx-auto mb-6 w-[180px] overflow-hidden rounded-2xl shadow-[0_24px_60px_rgba(0,0,0,0.55)] sm:w-[220px]"
-          >
-            <Image
-              src={`/products/${product.slug}.png`}
-              alt={t("name")}
-              width={298}
-              height={398}
-              priority
-              className="h-full w-full object-cover"
-            />
-          </motion.div>
+          <FallingPhoto
+            src={`/products/${product.slug}.png`}
+            alt={t("name")}
+            delay={0.3}
+            priority
+            className="mb-6 w-[180px] sm:w-[220px]"
+          />
           <span className="glass inline-block rounded-full px-4 py-1.5 text-xs font-semibold uppercase tracking-wider text-ink">
             {t("origin")}
           </span>
@@ -134,6 +126,13 @@ export function ProductStory({ slug }: { slug: string }) {
         style={{ background: `color-mix(in srgb, ${accent} 75%, var(--ink-deep))` }}
       >
         <Reveal className="relative z-10 mx-auto w-full max-w-xl">
+          <FallingPhoto
+            src={`/products/${product.slug}.png`}
+            alt={t("name")}
+            rotate={6}
+            delay={0.1}
+            className="mx-auto mb-6 w-[130px] sm:w-[150px]"
+          />
           <p className="text-center text-xs font-semibold uppercase tracking-[0.2em] text-paper/85">
             {t("name")}
           </p>
@@ -245,6 +244,41 @@ export function ProductStory({ slug }: { slug: string }) {
         </div>
       </section>
     </div>
+  );
+}
+
+function FallingPhoto({
+  src,
+  alt,
+  rotate = -3,
+  delay = 0,
+  priority = false,
+  className = "",
+}: {
+  src: string;
+  alt: string;
+  rotate?: number;
+  delay?: number;
+  priority?: boolean;
+  className?: string;
+}) {
+  return (
+    <motion.div
+      initial={{ y: -160, rotate: rotate * 3, opacity: 0 }}
+      whileInView={{ y: 0, rotate, opacity: 1 }}
+      viewport={{ once: true, amount: 0.5 }}
+      transition={{ type: "spring", stiffness: 110, damping: 13, delay }}
+      className={`relative mx-auto overflow-hidden rounded-2xl shadow-[0_24px_60px_rgba(0,0,0,0.55)] ${className}`}
+    >
+      <Image
+        src={src}
+        alt={alt}
+        width={298}
+        height={398}
+        priority={priority}
+        className="h-full w-full object-cover"
+      />
+    </motion.div>
   );
 }
 
