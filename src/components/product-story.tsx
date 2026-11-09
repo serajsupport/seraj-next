@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, type ReactNode } from "react";
 import { useTranslations } from "next-intl";
-import { motion } from "motion/react";
+import { motion, useScroll, useTransform } from "motion/react";
 import Image from "next/image";
 import { Link } from "@/i18n/navigation";
 import { PRODUCTS, getProduct, type AccentColor } from "@/data/products";
@@ -32,6 +32,15 @@ export function ProductStory({ slug }: { slug: string }) {
   const tp = useTranslations("products");
   const tg = useTranslations("grove");
   const index = PRODUCTS.findIndex((p) => p.slug === slug);
+
+  const heroRef = useRef<HTMLDivElement>(null);
+  const { scrollYProgress: heroProgress } = useScroll({
+    target: heroRef,
+    offset: ["start start", "end end"],
+  });
+  const startOpacity = useTransform(heroProgress, [0, 0.32, 0.46], [1, 1, 0]);
+  const midOpacity = useTransform(heroProgress, [0.22, 0.4, 0.6, 0.78], [0, 1, 1, 0]);
+  const endOpacity = useTransform(heroProgress, [0.68, 0.84, 1], [0, 1, 1]);
 
   if (!product) return null;
 
@@ -66,34 +75,50 @@ export function ProductStory({ slug }: { slug: string }) {
         </span>
       </div>
 
-      {/* 1 — hero */}
-      <section
-        className="relative flex h-dvh w-full items-center justify-center overflow-hidden px-6 text-center"
-        style={{ background: `linear-gradient(165deg, var(--midnight), color-mix(in srgb, ${accent} 32%, var(--midnight)))` }}
-      >
-        <Parallax speed={0.08} className="pointer-events-none absolute left-1/2 top-[8%] h-[70%] w-[70%] max-w-xl -translate-x-1/2 opacity-[0.16]">
-          <product.Icon className="h-full w-full text-ink" />
-        </Parallax>
-        <Reveal className="relative z-10 max-w-2xl">
-          <FallingPhoto
-            src={`/products/${product.slug}.png`}
-            alt={t("name")}
-            delay={0.3}
-            priority
-            className="mb-6 w-[180px] sm:w-[220px]"
+      {/* 1 — hero: pinned while the photo scrubs through its falling sequence */}
+      <section ref={heroRef} className="relative h-[230dvh] w-full">
+        <div
+          className="sticky top-0 flex h-dvh w-full items-center justify-center overflow-hidden px-6 text-center"
+          style={{ background: `linear-gradient(165deg, var(--midnight), color-mix(in srgb, ${accent} 32%, var(--midnight)))` }}
+        >
+          <Parallax speed={0.08} className="pointer-events-none absolute left-1/2 top-[8%] h-[70%] w-[70%] max-w-xl -translate-x-1/2 opacity-[0.16]">
+            <product.Icon className="h-full w-full text-ink" />
+          </Parallax>
+          <Reveal className="relative z-10 max-w-2xl">
+            <div className="relative mx-auto mb-6 w-[180px] overflow-hidden rounded-2xl shadow-[0_24px_60px_rgba(0,0,0,0.55)] sm:w-[220px]">
+              <div className="invisible" style={{ aspectRatio: "298 / 398" }} />
+              {(
+                [
+                  [`/products/${product.slug}-start.png`, startOpacity],
+                  [`/products/${product.slug}.png`, midOpacity],
+                  [`/products/${product.slug}-end.png`, endOpacity],
+                ] as const
+              ).map(([src, opacity], i) => (
+                <motion.div key={src} style={{ opacity }} className="absolute inset-0">
+                  <Image
+                    src={src}
+                    alt={t("name")}
+                    fill
+                    sizes="220px"
+                    priority={i === 0}
+                    className="object-cover"
+                  />
+                </motion.div>
+              ))}
+            </div>
+            <span className="glass inline-block rounded-full px-4 py-1.5 text-xs font-semibold uppercase tracking-wider text-ink">
+              {t("origin")}
+            </span>
+            <h1 className="mt-6 text-balance font-display text-[clamp(2.4rem,7vw,5rem)] font-medium leading-[0.98] text-ink">
+              {t("name")}
+            </h1>
+            <p className="mt-4 text-lg text-ink-soft">{t("tagline")}</p>
+          </Reveal>
+          <ArrowDown
+            size={20}
+            className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce text-ink-soft"
           />
-          <span className="glass inline-block rounded-full px-4 py-1.5 text-xs font-semibold uppercase tracking-wider text-ink">
-            {t("origin")}
-          </span>
-          <h1 className="mt-6 text-balance font-display text-[clamp(2.4rem,7vw,5rem)] font-medium leading-[0.98] text-ink">
-            {t("name")}
-          </h1>
-          <p className="mt-4 text-lg text-ink-soft">{t("tagline")}</p>
-        </Reveal>
-        <ArrowDown
-          size={20}
-          className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce text-ink-soft"
-        />
+        </div>
       </section>
 
       {/* 2 — origin / description */}
