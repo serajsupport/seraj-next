@@ -102,8 +102,14 @@ export function ProductStory({ slug }: { slug: string }) {
         style={{ background: `color-mix(in srgb, ${accent} 14%, var(--paper))` }}
       >
         <Parallax
-          speed={0.12}
-          className="pointer-events-none absolute -right-10 top-1/2 h-72 w-72 -translate-y-1/2 opacity-20 sm:h-96 sm:w-96"
+          speed={0.14}
+          className="pointer-events-none absolute -right-16 top-[12%] h-80 w-72 opacity-45 sm:h-[28rem] sm:w-[26rem]"
+        >
+          <ShardImage src={`/products/${product.slug}.png`} alt="" />
+        </Parallax>
+        <Parallax
+          speed={0.08}
+          className="pointer-events-none absolute -left-10 bottom-[6%] h-44 w-44 opacity-[0.14] sm:h-56 sm:w-56"
         >
           <div style={{ color: accent }}>
             <product.Icon className="h-full w-full" />
@@ -243,6 +249,19 @@ export function ProductStory({ slug }: { slug: string }) {
           </Link>
         </div>
       </section>
+    </div>
+  );
+}
+
+function ShardImage({ src, alt }: { src: string; alt: string }) {
+  return (
+    <div
+      className="relative h-full w-full overflow-hidden"
+      style={{
+        clipPath: "polygon(20% 0%, 100% 10%, 92% 85%, 58% 100%, 8% 88%, 0% 32%)",
+      }}
+    >
+      <Image src={src} alt={alt} fill sizes="450px" className="object-cover" />
     </div>
   );
 }

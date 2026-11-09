@@ -33,9 +33,12 @@ export function IntroGate() {
         >
           <div className="bg-grain-dark" />
 
-          <div className="relative max-w-3xl">
+          <div className="relative w-full max-w-4xl">
             {lines.map((line, i) => (
-              <div key={i} className="overflow-hidden">
+              <div
+                key={i}
+                className={`overflow-hidden ${i % 2 === 0 ? "text-start" : "text-end"}`}
+              >
                 <motion.p
                   initial={{ y: "110%" }}
                   animate={{ y: "0%" }}
