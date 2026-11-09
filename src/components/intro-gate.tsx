@@ -37,7 +37,7 @@ export function IntroGate() {
             {lines.map((line, i) => (
               <div
                 key={i}
-                className={`overflow-hidden ${i % 2 === 0 ? "text-start" : "text-end"}`}
+                className={`overflow-hidden text-center ${i % 2 === 0 ? "sm:text-start" : "sm:text-end"}`}
               >
                 <motion.p
                   initial={{ y: "110%" }}

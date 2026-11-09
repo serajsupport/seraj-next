@@ -103,7 +103,7 @@ export function ProductStory({ slug }: { slug: string }) {
       >
         <Parallax
           speed={0.14}
-          className="pointer-events-none absolute -right-16 top-[12%] h-80 w-72 opacity-45 sm:h-[28rem] sm:w-[26rem]"
+          className="pointer-events-none absolute -right-10 top-[10%] h-72 w-56 opacity-50 sm:h-[30rem] sm:w-[23rem]"
         >
           <ShardImage src={`/products/${product.slug}.png`} alt="" />
         </Parallax>
@@ -261,7 +261,14 @@ function ShardImage({ src, alt }: { src: string; alt: string }) {
         clipPath: "polygon(20% 0%, 100% 10%, 92% 85%, 58% 100%, 8% 88%, 0% 32%)",
       }}
     >
-      <Image src={src} alt={alt} fill sizes="450px" className="object-cover" />
+      <Image
+        src={src}
+        alt={alt}
+        fill
+        sizes="450px"
+        className="object-cover"
+        style={{ objectPosition: "center 65%" }}
+      />
     </div>
   );
 }
