@@ -9,6 +9,8 @@ import { PRODUCTS, getProduct, type AccentColor } from "@/data/products";
 import { BasketIcon, SackIcon } from "@/components/scene-props";
 import { ArrowDown, ArrowUpRight, ChevronLeft, ChevronRight, X } from "lucide-react";
 
+const HERO_SIZES = "(min-width: 1024px) 480px, 290px";
+
 const accentVar: Record<AccentColor, string> = {
   almond: "var(--almond)",
   pistachio: "var(--pistachio)",
@@ -38,9 +40,11 @@ export function ProductStory({ slug }: { slug: string }) {
     target: heroRef,
     offset: ["start start", "end end"],
   });
-  const startOpacity = useTransform(heroProgress, [0, 0.32, 0.46], [1, 1, 0]);
-  const midOpacity = useTransform(heroProgress, [0.22, 0.4, 0.6, 0.78], [0, 1, 1, 0]);
-  const endOpacity = useTransform(heroProgress, [0.68, 0.84, 1], [0, 1, 1]);
+  // Ranges span 0–1 explicitly: the native scroll timeline fades back to the base value past the last keyframe otherwise.
+  const midOpacity = useTransform(heroProgress, [0, 0.16, 0.42, 1], [0, 0, 1, 1]);
+  const endOpacity = useTransform(heroProgress, [0, 0.56, 0.84, 1], [0, 0, 1, 1]);
+  const cardScale = useTransform(heroProgress, [0, 1], [0.94, 1]);
+  const photoScale = useTransform(heroProgress, [0, 1], [1.14, 1]);
 
   if (!product) return null;
 
@@ -70,53 +74,80 @@ export function ProductStory({ slug }: { slug: string }) {
         >
           <X size={18} />
         </Link>
-        <span className="glass rounded-full px-3 py-1.5 text-xs font-semibold uppercase tracking-wider text-ink">
+        <span dir="ltr" className="glass rounded-full px-3 py-1.5 text-xs font-semibold uppercase tracking-wider text-ink">
           {String(index + 1).padStart(2, "0")} / {String(PRODUCTS.length).padStart(2, "0")}
         </span>
       </div>
 
-      {/* 1 — hero: pinned while the photo scrubs through its falling sequence */}
-      <section ref={heroRef} className="relative h-[230dvh] w-full">
+      {/* 1 — hero: pinned while the photo scrubs through its pouring sequence */}
+      <section ref={heroRef} className="relative h-[260dvh] w-full">
         <div
-          className="sticky top-0 flex h-dvh w-full items-center justify-center overflow-hidden px-6 text-center"
+          className="sticky top-0 flex h-dvh w-full items-center overflow-hidden px-6"
           style={{ background: `linear-gradient(165deg, var(--midnight), color-mix(in srgb, ${accent} 32%, var(--midnight)))` }}
         >
-          <Parallax speed={0.08} className="pointer-events-none absolute left-1/2 top-[8%] h-[70%] w-[70%] max-w-xl -translate-x-1/2 opacity-[0.16]">
+          <Parallax speed={0.08} className="pointer-events-none absolute start-[-6%] top-[14%] h-[70%] w-[60%] max-w-xl opacity-[0.12]">
             <product.Icon className="h-full w-full text-ink" />
           </Parallax>
-          <Reveal className="relative z-10 max-w-2xl">
-            <div className="relative mx-auto mb-6 w-[180px] overflow-hidden rounded-2xl shadow-[0_24px_60px_rgba(0,0,0,0.55)] sm:w-[220px]">
-              <div className="invisible" style={{ aspectRatio: "298 / 398" }} />
-              {(
-                [
-                  [`/products/${product.slug}-start.png`, startOpacity],
-                  [`/products/${product.slug}.png`, midOpacity],
-                  [`/products/${product.slug}-end.png`, endOpacity],
-                ] as const
-              ).map(([src, opacity], i) => (
-                <motion.div key={src} style={{ opacity }} className="absolute inset-0">
+          <div className="relative z-10 mx-auto grid w-full max-w-6xl items-center gap-7 lg:grid-cols-2 lg:gap-16">
+            <Reveal className="order-2 text-center lg:order-1 lg:text-start">
+              <span className="glass inline-block rounded-full px-4 py-1.5 text-xs font-semibold uppercase tracking-wider text-ink">
+                {t("origin")}
+              </span>
+              <h1 className="mt-5 text-balance font-display text-[clamp(2.2rem,6vw,5rem)] font-medium leading-[0.98] text-ink">
+                {t("name")}
+              </h1>
+              <p className="mt-4 text-lg text-ink-soft">{t("tagline")}</p>
+            </Reveal>
+            <div className="relative order-1 mx-auto lg:order-2">
+              <div
+                aria-hidden
+                className="absolute -inset-[22%] rounded-full"
+                style={{ background: `radial-gradient(closest-side, color-mix(in srgb, ${accent} 60%, transparent), transparent)` }}
+              />
+              <motion.div
+                style={{ scale: cardScale }}
+                className="relative aspect-[880/1168] h-[min(42dvh,380px)] overflow-hidden rounded-[1.75rem] shadow-[0_30px_80px_rgba(0,0,0,0.6)] lg:h-[min(74dvh,640px)]"
+              >
+                <motion.div style={{ scale: photoScale }} className="absolute inset-0">
                   <Image
-                    src={src}
+                    src={`/products/${product.slug}-start.jpg`}
                     alt={t("name")}
                     fill
-                    sizes="220px"
-                    priority={i === 0}
+                    preload
+                    quality={90}
+                    sizes={HERO_SIZES}
                     className="object-cover"
                   />
+                  {(
+                    [
+                      [`/products/${product.slug}.jpg`, midOpacity],
+                      [`/products/${product.slug}-end.jpg`, endOpacity],
+                    ] as const
+                  ).map(([src, opacity]) => (
+                    <motion.div key={src} style={{ opacity }} className="absolute inset-0">
+                      <Image
+                        src={src}
+                        alt=""
+                        fill
+                        loading="eager"
+                        quality={90}
+                        sizes={HERO_SIZES}
+                        className="object-cover"
+                      />
+                    </motion.div>
+                  ))}
                 </motion.div>
-              ))}
+                <motion.div
+                  aria-hidden
+                  style={{ scaleX: heroProgress, background: accent }}
+                  className="absolute inset-x-0 bottom-0 h-1 origin-left rtl:origin-right"
+                />
+              </motion.div>
             </div>
-            <span className="glass inline-block rounded-full px-4 py-1.5 text-xs font-semibold uppercase tracking-wider text-ink">
-              {t("origin")}
-            </span>
-            <h1 className="mt-6 text-balance font-display text-[clamp(2.4rem,7vw,5rem)] font-medium leading-[0.98] text-ink">
-              {t("name")}
-            </h1>
-            <p className="mt-4 text-lg text-ink-soft">{t("tagline")}</p>
-          </Reveal>
+          </div>
           <ArrowDown
             size={20}
-            className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce text-ink-soft"
+            className="absolute bottom-5 left-1/2 -translate-x-1/2 animate-bounce text-ink-soft"
           />
         </div>
       </section>
@@ -127,12 +158,6 @@ export function ProductStory({ slug }: { slug: string }) {
         style={{ background: `color-mix(in srgb, ${accent} 14%, var(--paper))` }}
       >
         <Parallax
-          speed={0.14}
-          className="pointer-events-none absolute -right-10 top-[10%] h-72 w-56 opacity-50 sm:h-[30rem] sm:w-[23rem]"
-        >
-          <ShardImage src={`/products/${product.slug}.png`} alt="" />
-        </Parallax>
-        <Parallax
           speed={0.08}
           className="pointer-events-none absolute -left-10 bottom-[6%] h-44 w-44 opacity-[0.14] sm:h-56 sm:w-56"
         >
@@ -140,15 +165,23 @@ export function ProductStory({ slug }: { slug: string }) {
             <product.Icon className="h-full w-full" />
           </div>
         </Parallax>
-        <Reveal className="relative z-10 mx-auto max-w-xl">
-          <p className="text-xs font-semibold uppercase tracking-[0.2em]" style={{ color: accent }}>
-            {tc("origin")}
-          </p>
-          <h2 className="mt-3 font-display text-3xl font-medium text-ink-deep sm:text-4xl">
-            {t("origin")}
-          </h2>
-          <p className="mt-5 text-base leading-relaxed text-ink-deep/70">{t("description")}</p>
-        </Reveal>
+        <div className="relative z-10 mx-auto grid w-full max-w-5xl items-center gap-12 lg:grid-cols-2">
+          <Reveal>
+            <p className="text-xs font-semibold uppercase tracking-[0.2em]" style={{ color: accent }}>
+              {tc("origin")}
+            </p>
+            <h2 className="mt-3 font-display text-3xl font-medium text-ink-deep sm:text-4xl">
+              {t("origin")}
+            </h2>
+            <p className="mt-5 text-base leading-relaxed text-ink-deep/70">{t("description")}</p>
+          </Reveal>
+          <Parallax
+            speed={0.1}
+            className="mx-auto h-[23rem] w-[17.5rem] drop-shadow-[0_30px_45px_rgba(0,0,0,0.35)] sm:h-[32rem] sm:w-[24.5rem]"
+          >
+            <ShardImage src={`/products/${product.slug}-end.jpg`} alt="" />
+          </Parallax>
+        </div>
       </section>
 
       {/* 3 — specification (statement block) */}
@@ -156,35 +189,37 @@ export function ProductStory({ slug }: { slug: string }) {
         className="relative flex min-h-dvh w-full items-center overflow-hidden px-6 py-24"
         style={{ background: `color-mix(in srgb, ${accent} 75%, var(--ink-deep))` }}
       >
-        <Reveal className="relative z-10 mx-auto w-full max-w-xl">
+        <Reveal className="relative z-10 mx-auto grid w-full max-w-4xl items-center gap-10 md:grid-cols-[auto_1fr] md:gap-14">
           <FallingPhoto
-            src={`/products/${product.slug}.png`}
+            src={`/products/${product.slug}.jpg`}
             alt={t("name")}
-            rotate={6}
+            rotate={-4}
             delay={0.1}
-            className="mx-auto mb-6 w-[130px] sm:w-[150px]"
+            className="w-[200px] md:w-[290px]"
           />
-          <p className="text-center text-xs font-semibold uppercase tracking-[0.2em] text-paper/85">
-            {t("name")}
-          </p>
-          <h2 className="mt-3 text-center font-display text-3xl font-medium text-paper sm:text-4xl">
-            {tc("specification")}
-          </h2>
-          <dl className="mt-10 flex flex-col gap-0 overflow-hidden rounded-2xl border border-paper/25">
-            {specRows.map((row, i) => (
-              <div
-                key={row.label}
-                className={`grid grid-cols-[auto_1fr] gap-x-6 gap-y-1 px-5 py-4 sm:grid-cols-[11rem_1fr] ${
-                  i % 2 === 0 ? "bg-paper/8" : ""
-                }`}
-              >
-                <dt className="text-xs font-semibold uppercase tracking-wider text-paper/70">
-                  {row.label}
-                </dt>
-                <dd className="text-sm font-medium text-paper">{row.value}</dd>
-              </div>
-            ))}
-          </dl>
+          <div>
+            <p className="text-center text-xs font-semibold uppercase tracking-[0.2em] text-paper/85 md:text-start">
+              {t("name")}
+            </p>
+            <h2 className="mt-3 text-center font-display text-3xl font-medium text-paper sm:text-4xl md:text-start">
+              {tc("specification")}
+            </h2>
+            <dl className="mt-8 flex flex-col gap-0 overflow-hidden rounded-2xl border border-paper/25">
+              {specRows.map((row, i) => (
+                <div
+                  key={row.label}
+                  className={`grid grid-cols-[auto_1fr] gap-x-6 gap-y-1 px-5 py-4 sm:grid-cols-[11rem_1fr] ${
+                    i % 2 === 0 ? "bg-paper/8" : ""
+                  }`}
+                >
+                  <dt className="text-xs font-semibold uppercase tracking-wider text-paper/70">
+                    {row.label}
+                  </dt>
+                  <dd className="text-sm font-medium text-paper">{row.value}</dd>
+                </div>
+              ))}
+            </dl>
+          </div>
         </Reveal>
       </section>
 
@@ -290,9 +325,9 @@ function ShardImage({ src, alt }: { src: string; alt: string }) {
         src={src}
         alt={alt}
         fill
-        sizes="450px"
+        sizes="(min-width: 640px) 392px, 280px"
         className="object-cover"
-        style={{ objectPosition: "center 65%" }}
+        style={{ objectPosition: "center 70%" }}
       />
     </div>
   );
@@ -303,14 +338,12 @@ function FallingPhoto({
   alt,
   rotate = -3,
   delay = 0,
-  priority = false,
   className = "",
 }: {
   src: string;
   alt: string;
   rotate?: number;
   delay?: number;
-  priority?: boolean;
   className?: string;
 }) {
   return (
@@ -324,9 +357,9 @@ function FallingPhoto({
       <Image
         src={src}
         alt={alt}
-        width={298}
-        height={398}
-        priority={priority}
+        width={880}
+        height={1168}
+        sizes="(min-width: 768px) 290px, 200px"
         className="h-full w-full object-cover"
       />
     </motion.div>

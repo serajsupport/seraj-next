@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
 import { useTranslations } from "next-intl";
+import Image from "next/image";
 import { Link } from "@/i18n/navigation";
 import { PRODUCTS } from "@/data/products";
 import { accentText, accentBg } from "@/lib/accent";
@@ -35,7 +36,7 @@ export function GroveBrowser() {
 
   return (
     <div
-      className="relative mx-auto max-w-3xl"
+      className="relative mx-auto max-w-4xl"
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
       onTouchStart={(e) => {
@@ -52,27 +53,53 @@ export function GroveBrowser() {
         setPaused(false);
       }}
     >
-      <button
-        type="button"
-        onClick={() => go(-1)}
-        aria-label={tg("prev")}
-        className="absolute start-0 top-1/2 z-10 -translate-y-1/2 -translate-x-3 sm:-translate-x-6 grid h-11 w-11 place-items-center rounded-full glass text-ink transition-transform hover:scale-105 rtl:rotate-180"
-      >
-        <ChevronLeft size={20} />
-      </button>
-      <button
-        type="button"
-        onClick={() => go(1)}
-        aria-label={tg("next")}
-        className="absolute end-0 top-1/2 z-10 -translate-y-1/2 translate-x-3 sm:translate-x-6 grid h-11 w-11 place-items-center rounded-full glass text-ink transition-transform hover:scale-105 rtl:rotate-180"
-      >
-        <ChevronRight size={20} />
-      </button>
+      <div className="absolute start-0 top-1/2 z-10 -translate-x-3 -translate-y-1/2 sm:-translate-x-6 rtl:translate-x-3 rtl:sm:translate-x-6">
+        <button
+          type="button"
+          onClick={() => go(-1)}
+          aria-label={tg("prev")}
+          className="grid h-11 w-11 place-items-center rounded-full glass text-ink transition-transform hover:scale-105 rtl:rotate-180"
+        >
+          <ChevronLeft size={20} />
+        </button>
+      </div>
+      <div className="absolute end-0 top-1/2 z-10 translate-x-3 -translate-y-1/2 sm:translate-x-6 rtl:-translate-x-3 rtl:sm:-translate-x-6">
+        <button
+          type="button"
+          onClick={() => go(1)}
+          aria-label={tg("next")}
+          className="grid h-11 w-11 place-items-center rounded-full glass text-ink transition-transform hover:scale-105 rtl:rotate-180"
+        >
+          <ChevronRight size={20} />
+        </button>
+      </div>
 
       <div className="flex items-stretch gap-3">
         <Shutter accent={product.accent} />
 
-        <div className="relative flex-1 overflow-hidden rounded-[2rem] glass-strong">
+        <div className="relative grid flex-1 overflow-hidden rounded-[2rem] glass-strong sm:grid-cols-[minmax(0,5fr)_minmax(0,6fr)]">
+          <div className="relative aspect-[4/3] overflow-hidden sm:aspect-auto sm:min-h-[27rem]">
+            {PRODUCTS.map((p, i) => (
+              <Image
+                key={p.slug}
+                src={`/products/${p.slug}.jpg`}
+                alt={i === index ? tp(`${p.slug}.name`) : ""}
+                fill
+                sizes="(min-width: 640px) 400px, 100vw"
+                className={`object-cover object-[center_62%] transition-[opacity,transform] duration-700 ease-out ${
+                  i === index ? "scale-100 opacity-100" : "scale-110 opacity-0"
+                }`}
+              />
+            ))}
+            <div className="absolute bottom-4 start-4">
+              <div
+                className={`grid h-14 w-14 place-items-center rounded-full glass ${accentText[product.accent]}`}
+              >
+                <product.Icon className="h-9 w-9" />
+              </div>
+            </div>
+          </div>
+
           <AnimatePresence mode="wait">
             <motion.div
               key={product.slug}
@@ -80,26 +107,16 @@ export function GroveBrowser() {
               animate={{ opacity: 1, x: 0 }}
               exit={{ opacity: 0, x: -24 }}
               transition={{ duration: 0.4, ease: "easeOut" }}
-              className="px-6 py-10 text-center sm:px-12 sm:py-14"
+              className="flex min-h-[16rem] flex-col items-center justify-center px-6 py-10 text-center sm:items-start sm:px-10 sm:py-14 sm:text-start"
             >
               <span className="inline-block rounded-full bg-electric-blue/10 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.2em] text-ink-soft">
                 {tg("chapter")} {String(index + 1).padStart(2, "0")}
               </span>
 
-              <div
-                className={`relative mx-auto mt-6 aspect-square w-40 sm:w-48 ${accentText[product.accent]}`}
-              >
-                <div
-                  className="absolute inset-0 rounded-full opacity-20"
-                  style={{ background: "currentColor" }}
-                />
-                <product.Icon className="relative h-full w-full p-6" />
-              </div>
-
-              <h3 className="mt-6 font-display text-3xl font-medium text-ink sm:text-4xl">
+              <h3 className="mt-5 font-display text-3xl font-medium text-ink sm:text-4xl">
                 {tp(`${product.slug}.name`)}
               </h3>
-              <p className="mt-2 text-sm text-ink-soft">
+              <p className="mt-3 text-sm text-ink-soft">
                 {tp(`${product.slug}.tagline`)}
               </p>
 
