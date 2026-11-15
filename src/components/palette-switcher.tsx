@@ -5,14 +5,13 @@ import { useEffect, useState } from "react";
 const PALETTES = [
   { value: "default", label: "Midnight / Saffron Gold", dot: "#e2b14a" },
   { value: "artdeco", label: "Art Deco Palace", dot: "#0f5c45" },
-  { value: "kodachrome", label: "Kodachrome '70s", dot: "#e2672b" },
 ] as const;
 
 type PaletteValue = (typeof PALETTES)[number]["value"];
 
 function readPalette(): PaletteValue {
   const current = document.documentElement.getAttribute("data-palette");
-  return current === "artdeco" || current === "kodachrome" ? current : "default";
+  return current === "artdeco" ? current : "default";
 }
 
 export function PaletteSwitcher({ className = "" }: { className?: string }) {

@@ -6,8 +6,6 @@ import {
   Cairo,
   Cinzel_Decorative,
   Marcellus,
-  Bevan,
-  Archivo_Narrow,
 } from "next/font/google";
 import { NextIntlClientProvider, hasLocale } from "next-intl";
 import { notFound } from "next/navigation";
@@ -52,18 +50,6 @@ const marcellus = Marcellus({
   variable: "--font-marcellus",
 });
 
-const bevan = Bevan({
-  subsets: ["latin"],
-  weight: ["400"],
-  variable: "--font-bevan",
-});
-
-const archivoNarrow = Archivo_Narrow({
-  subsets: ["latin"],
-  weight: ["400", "600", "700"],
-  variable: "--font-archivo-narrow",
-});
-
 export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));
 }
@@ -91,13 +77,13 @@ export default async function RootLayout({
     <html
       lang={locale}
       dir={dir}
-      className={`${fraunces.variable} ${inter.variable} ${reemKufi.variable} ${cairo.variable} ${cinzelDecorative.variable} ${marcellus.variable} ${bevan.variable} ${archivoNarrow.variable} h-full antialiased`}
+      className={`${fraunces.variable} ${inter.variable} ${reemKufi.variable} ${cairo.variable} ${cinzelDecorative.variable} ${marcellus.variable} h-full antialiased`}
     >
       <head>
         <script
           dangerouslySetInnerHTML={{
             __html:
-              "try{var p=localStorage.getItem('seraj-palette');if(p==='artdeco'||p==='kodachrome'){document.documentElement.setAttribute('data-palette',p);}}catch(e){}",
+              "try{var p=localStorage.getItem('seraj-palette');if(p==='artdeco'){document.documentElement.setAttribute('data-palette',p);}}catch(e){}",
           }}
         />
       </head>

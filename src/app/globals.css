@@ -87,28 +87,6 @@ html[data-palette="artdeco"] {
   --font-sans: var(--font-marcellus), serif;
 }
 
-/* Kodachrome '70s — dark */
-html[data-palette="kodachrome"] {
-  color-scheme: dark;
-  --midnight: #2b1708;
-  --on-accent: #f3ddb0;
-  --ink: #f3ddb0;
-  --ink-soft: #c3a46c;
-  --electric-blue: #e2672b;
-  --electric-blue-dark: #b8491a;
-  --electric-blue-light: #f08a52;
-  --cantaloupe: #8a9a42;
-  --cantaloupe-dark: #647236;
-  --cantaloupe-light: #a3b35c;
-  --surface-rgb: 58 33 16;
-  --accent-rgb: 226 103 43;
-  --accent-tint-rgb: 240 138 82;
-  --cantaloupe-rgb: 138 154 66;
-  --mesh-base-gradient: linear-gradient(180deg, #3a2110, var(--midnight) 40%, #170c04);
-  --font-display: var(--font-bevan), serif;
-  --font-sans: var(--font-archivo-narrow), sans-serif;
-}
-
 @theme inline {
   --color-cream: var(--cream);
   --color-cream-deep: var(--cream-deep);
