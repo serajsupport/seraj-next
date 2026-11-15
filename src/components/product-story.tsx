@@ -6,11 +6,11 @@ import { motion, useScroll, useTransform } from "motion/react";
 import Image from "next/image";
 import { Link } from "@/i18n/navigation";
 import { PRODUCTS, getProduct, type AccentColor } from "@/data/products";
-import { BasketIcon, SackIcon } from "@/components/scene-props";
+import { FeatureImage } from "@/components/feature-image";
 import { Parallax, Reveal } from "@/components/reveal";
 import { ArrowDown, ArrowUpRight, ChevronLeft, ChevronRight, X } from "lucide-react";
 
-const HERO_SIZES = "(min-width: 1024px) 480px, 290px";
+const HERO_SIZES = "(min-width: 1024px) 520px, 300px";
 
 const accentVar: Record<AccentColor, string> = {
   almond: "var(--almond)",
@@ -55,6 +55,7 @@ export function ProductStory({ slug }: { slug: string }) {
   const spec = t.raw("spec") as Spec;
   const usedFor = t.raw("usedFor") as string[];
   const nutrition = t("nutrition");
+  const rfqHref = `/contact?product=${product.slug}`;
 
   const specRows: { label: string; value: string }[] = [
     ...(spec.grade ? [{ label: tc("specLabels.grade"), value: spec.grade }] : []),
@@ -82,14 +83,11 @@ export function ProductStory({ slug }: { slug: string }) {
 
       {/* 1 — hero: pinned while the photo scrubs through its pouring sequence */}
       <section ref={heroRef} className="relative h-[260dvh] w-full">
-        <div
-          className="sticky top-0 flex h-dvh w-full items-center overflow-hidden px-6"
-          style={{ background: `linear-gradient(165deg, var(--midnight), color-mix(in srgb, ${accent} 32%, var(--midnight)))` }}
-        >
-          <Parallax speed={0.08} className="pointer-events-none absolute start-[-6%] top-[14%] h-[70%] w-[60%] max-w-xl opacity-[0.12]">
+        <div className="sticky top-0 flex h-dvh w-full items-center overflow-hidden px-6">
+          <Parallax speed={0.08} className="pointer-events-none absolute start-[-6%] top-[14%] h-[70%] w-[60%] max-w-xl opacity-[0.08]">
             <product.Icon className="h-full w-full text-ink" />
           </Parallax>
-          <div className="relative z-10 mx-auto grid w-full max-w-6xl items-center gap-7 lg:grid-cols-2 lg:gap-16">
+          <div className="relative z-10 mx-auto grid w-full max-w-6xl items-center gap-6 lg:grid-cols-2 lg:gap-16">
             <Reveal className="order-2 text-center lg:order-1 lg:text-start">
               <span className="glass inline-block rounded-full px-4 py-1.5 text-xs font-semibold uppercase tracking-wider text-ink">
                 {t("origin")}
@@ -98,53 +96,58 @@ export function ProductStory({ slug }: { slug: string }) {
                 {t("name")}
               </h1>
               <p className="mt-4 text-lg text-ink-soft">{t("tagline")}</p>
+              <div className="mt-6 flex flex-wrap items-center justify-center gap-3 lg:justify-start">
+                <Link
+                  href={rfqHref}
+                  className="inline-flex items-center gap-2 rounded-full bg-electric-blue px-6 py-3.5 text-sm font-semibold text-ink shadow-[0_10px_30px_rgba(47,111,239,0.4)] transition-transform hover:scale-[1.03]"
+                >
+                  {tc("rfqButton")}
+                  <ArrowUpRight size={16} />
+                </Link>
+                <span className="glass hidden rounded-full px-5 py-3.5 text-sm font-medium text-ink sm:inline-block">
+                  {tc("specLabels.minOrder")}: {spec.minOrder}
+                </span>
+              </div>
             </Reveal>
-            <div className="relative order-1 mx-auto lg:order-2">
-              <div
-                aria-hidden
-                className="absolute -inset-[22%] rounded-full"
-                style={{ background: `radial-gradient(closest-side, color-mix(in srgb, ${accent} 60%, transparent), transparent)` }}
-              />
-              <motion.div
-                style={{ scale: cardScale }}
-                className="relative aspect-[880/1168] h-[min(42dvh,380px)] overflow-hidden rounded-[1.75rem] shadow-[0_30px_80px_rgba(0,0,0,0.6)] lg:h-[min(74dvh,640px)]"
-              >
-                <motion.div style={{ scale: photoScale }} className="absolute inset-0">
-                  <Image
-                    src={`/products/${product.slug}-start.jpg`}
-                    alt={t("name")}
-                    fill
-                    preload
-                    quality={90}
-                    sizes={HERO_SIZES}
-                    className="object-cover"
-                  />
-                  {(
-                    [
-                      [`/products/${product.slug}.jpg`, midOpacity],
-                      [`/products/${product.slug}-end.jpg`, endOpacity],
-                    ] as const
-                  ).map(([src, opacity]) => (
-                    <motion.div key={src} style={{ opacity }} className="absolute inset-0">
-                      <Image
-                        src={src}
-                        alt=""
-                        fill
-                        loading="eager"
-                        quality={90}
-                        sizes={HERO_SIZES}
-                        className="object-cover"
-                      />
-                    </motion.div>
-                  ))}
-                </motion.div>
-                <motion.div
-                  aria-hidden
-                  style={{ scaleX: heroProgress, background: accent }}
-                  className="absolute inset-x-0 bottom-0 h-1 origin-left rtl:origin-right"
+            <motion.div
+              style={{ scale: cardScale }}
+              className="relative order-1 mx-auto aspect-[880/1168] h-[min(40dvh,360px)] overflow-hidden rounded-[1.75rem] shadow-[0_30px_80px_rgba(0,0,0,0.6)] lg:order-2 lg:h-[min(78dvh,680px)]"
+            >
+              <motion.div style={{ scale: photoScale }} className="absolute inset-0">
+                <Image
+                  src={`/products/${product.slug}-start.jpg`}
+                  alt={t("name")}
+                  fill
+                  preload
+                  quality={90}
+                  sizes={HERO_SIZES}
+                  className="object-cover"
                 />
+                {(
+                  [
+                    [`/products/${product.slug}.jpg`, midOpacity],
+                    [`/products/${product.slug}-end.jpg`, endOpacity],
+                  ] as const
+                ).map(([src, opacity]) => (
+                  <motion.div key={src} style={{ opacity }} className="absolute inset-0">
+                    <Image
+                      src={src}
+                      alt=""
+                      fill
+                      loading="eager"
+                      quality={90}
+                      sizes={HERO_SIZES}
+                      className="object-cover"
+                    />
+                  </motion.div>
+                ))}
               </motion.div>
-            </div>
+              <motion.div
+                aria-hidden
+                style={{ scaleX: heroProgress, background: accent }}
+                className="absolute inset-x-0 bottom-0 h-1 origin-left rtl:origin-right"
+              />
+            </motion.div>
           </div>
           <ArrowDown
             size={20}
@@ -153,141 +156,146 @@ export function ProductStory({ slug }: { slug: string }) {
         </div>
       </section>
 
-      {/* 2 — origin / description */}
-      <section
-        className="relative flex min-h-dvh w-full items-center overflow-hidden px-6 py-24"
-        style={{ background: `color-mix(in srgb, ${accent} 14%, var(--paper))` }}
-      >
-        <Parallax
-          speed={0.08}
-          className="pointer-events-none absolute -left-10 bottom-[6%] h-44 w-44 opacity-[0.14] sm:h-56 sm:w-56"
-        >
-          <div style={{ color: accent }}>
-            <product.Icon className="h-full w-full" />
-          </div>
-        </Parallax>
-        <div className="relative z-10 mx-auto grid w-full max-w-5xl items-center gap-12 lg:grid-cols-2">
-          <Reveal>
-            <p className="text-xs font-semibold uppercase tracking-[0.2em]" style={{ color: accent }}>
+      {/* 2 — origin */}
+      <section className="px-6 py-24 md:py-32">
+        <div className="mx-auto grid max-w-6xl items-center gap-12 lg:grid-cols-2 lg:gap-20">
+          <FeatureImage
+            src={`/products/${product.slug}-end.jpg`}
+            aspect="aspect-[3/4]"
+            className="mx-auto w-full max-w-md"
+          />
+          <Reveal delay={120}>
+            <p className="text-xs font-semibold uppercase tracking-[0.25em] text-ink-soft">
               {tc("origin")}
             </p>
-            <h2 className="mt-3 font-display text-3xl font-medium text-ink-deep sm:text-4xl">
+            <h2 className="mt-3 text-balance font-display text-3xl font-medium text-ink sm:text-5xl">
               {t("origin")}
             </h2>
-            <p className="mt-5 text-base leading-relaxed text-ink-deep/70">{t("description")}</p>
+            <p className="mt-6 text-lg leading-relaxed text-ink-soft">{t("description")}</p>
           </Reveal>
-          <Parallax
-            speed={0.1}
-            className="mx-auto h-[23rem] w-[17.5rem] drop-shadow-[0_30px_45px_rgba(0,0,0,0.35)] sm:h-[32rem] sm:w-[24.5rem]"
-          >
-            <ShardImage src={`/products/${product.slug}-end.jpg`} alt="" />
-          </Parallax>
         </div>
       </section>
 
-      {/* 3 — specification (statement block) */}
-      <section
-        className="relative flex min-h-dvh w-full items-center overflow-hidden px-6 py-24"
-        style={{ background: `color-mix(in srgb, ${accent} 75%, var(--ink-deep))` }}
-      >
-        <Reveal className="relative z-10 mx-auto grid w-full max-w-4xl items-center gap-10 md:grid-cols-[auto_1fr] md:gap-14">
-          <FallingPhoto
-            src={`/products/${product.slug}.jpg`}
-            alt={t("name")}
-            rotate={-4}
-            delay={0.1}
-            className="w-[200px] md:w-[290px]"
-          />
-          <div>
-            <p className="text-center text-xs font-semibold uppercase tracking-[0.2em] text-paper/85 md:text-start">
+      {/* 3 — specification */}
+      <section className="px-6 py-16 md:py-20">
+        <div className="mx-auto grid max-w-6xl items-center gap-14 lg:grid-cols-[minmax(0,1.25fr)_minmax(0,0.75fr)] lg:gap-20">
+          <Reveal>
+            <p className="text-xs font-semibold uppercase tracking-[0.25em] text-ink-soft">
               {t("name")}
             </p>
-            <h2 className="mt-3 text-center font-display text-3xl font-medium text-paper sm:text-4xl md:text-start">
+            <h2 className="mt-3 font-display text-3xl font-medium text-ink sm:text-5xl">
               {tc("specification")}
             </h2>
-            <dl className="mt-8 flex flex-col gap-0 overflow-hidden rounded-2xl border border-paper/25">
+            <dl className="mt-8 overflow-hidden rounded-[2rem] glass-strong">
               {specRows.map((row, i) => (
                 <div
                   key={row.label}
-                  className={`grid grid-cols-[auto_1fr] gap-x-6 gap-y-1 px-5 py-4 sm:grid-cols-[11rem_1fr] ${
-                    i % 2 === 0 ? "bg-paper/8" : ""
+                  className={`grid gap-x-6 gap-y-1 px-6 py-5 sm:grid-cols-[11rem_1fr] ${
+                    i > 0 ? "border-t border-electric-blue/12" : ""
                   }`}
                 >
-                  <dt className="text-xs font-semibold uppercase tracking-wider text-paper/70">
+                  <dt className="text-xs font-semibold uppercase tracking-wider text-ink-soft">
                     {row.label}
                   </dt>
-                  <dd className="text-sm font-medium text-paper">{row.value}</dd>
+                  <dd className="text-sm font-medium text-ink">{row.value}</dd>
                 </div>
               ))}
             </dl>
-          </div>
-        </Reveal>
+          </Reveal>
+          <FallingPhoto
+            src={`/products/${product.slug}.jpg`}
+            alt={t("name")}
+            rotate={4}
+            delay={0.1}
+            className="w-[230px] lg:w-[320px]"
+          />
+        </div>
       </section>
 
-      {/* 4 — used for + nutrition/price */}
-      <section
-        className="relative flex min-h-dvh w-full items-center overflow-hidden px-6 py-24"
-        style={{ background: `color-mix(in srgb, ${accent} 10%, var(--paper))` }}
-      >
-        <Parallax
-          speed={0.1}
-          className="pointer-events-none absolute -left-12 bottom-[-5%] h-64 w-64 opacity-20 sm:h-80 sm:w-80"
-        >
-          <div style={{ color: accent }}>
-            <SackIcon className="h-full w-full" />
-          </div>
-        </Parallax>
-        <Reveal className="relative z-10 mx-auto grid w-full max-w-3xl gap-10 sm:grid-cols-2">
-          <div>
-            <div className="mb-4 h-14 w-14 opacity-80" style={{ color: accent }}>
-              <BasketIcon className="h-full w-full" />
+      {/* 4 — used for + price */}
+      <section className="px-6 py-16 md:py-20">
+        <div className="mx-auto grid max-w-6xl gap-6 md:grid-cols-2">
+          <Reveal className="h-full">
+            <div className="lift h-full rounded-[2rem] glass p-8 md:p-10">
+              <div className="mb-5 h-14 w-14 text-ink">
+                <product.Icon className="h-full w-full" />
+              </div>
+              <h2 className="font-display text-2xl font-medium text-ink">{tc("usedFor")}</h2>
+              <ul className="mt-5 flex flex-col gap-3">
+                {usedFor.map((item) => (
+                  <li key={item} className="flex items-start gap-3 text-ink-soft">
+                    <span className="mt-2.5 h-1.5 w-1.5 shrink-0 rounded-full bg-electric-blue" />
+                    {item}
+                  </li>
+                ))}
+              </ul>
             </div>
-            <p className="text-xs font-semibold uppercase tracking-[0.2em]" style={{ color: accent }}>
-              {tc("usedFor")}
-            </p>
-            <ul className="mt-4 flex flex-col gap-2.5">
-              {usedFor.map((item) => (
-                <li key={item} className="flex items-start gap-2 text-sm text-ink-deep/80">
-                  <span
-                    className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full"
-                    style={{ background: accent }}
-                  />
-                  {item}
-                </li>
-              ))}
-            </ul>
-          </div>
-          <div className="flex flex-col justify-center gap-6 rounded-2xl bg-ink-deep/5 p-6">
-            {nutrition && (
-              <p className="text-sm leading-relaxed text-ink-deep/70">{nutrition}</p>
-            )}
-            <p className="text-sm font-medium leading-relaxed text-ink-deep/80">
-              {tc("priceNote")}
-            </p>
-          </div>
-        </Reveal>
+          </Reveal>
+          <Reveal delay={120} className="h-full">
+            <div className="lift flex h-full flex-col justify-between gap-8 rounded-[2rem] glass p-8 md:p-10">
+              <div className="flex flex-col gap-5">
+                <p className="font-display text-2xl leading-snug font-medium text-ink">
+                  {tc("priceNote")}
+                </p>
+                {nutrition && <p className="leading-relaxed text-ink-soft">{nutrition}</p>}
+                <div className="flex flex-wrap gap-2">
+                  {[
+                    `${tc("specLabels.minOrder")}: ${spec.minOrder}`,
+                    `${tc("specLabels.form")}: ${spec.form}`,
+                  ].map((fact) => (
+                    <span
+                      key={fact}
+                      className="rounded-full bg-electric-blue/10 px-4 py-2 text-sm font-medium text-ink"
+                    >
+                      {fact}
+                    </span>
+                  ))}
+                </div>
+              </div>
+              <Link
+                href={rfqHref}
+                className="inline-flex items-center gap-2 self-start rounded-full bg-electric-blue px-6 py-3.5 text-sm font-semibold text-ink shadow-[0_10px_30px_rgba(47,111,239,0.4)] transition-transform hover:scale-[1.03]"
+              >
+                {tc("rfqButton")}
+                <ArrowUpRight size={16} />
+              </Link>
+            </div>
+          </Reveal>
+        </div>
       </section>
 
-      {/* 5 — cta + nav */}
-      <section
-        className="relative flex min-h-dvh w-full flex-col items-center justify-center gap-10 overflow-hidden px-6 py-24 text-center"
-        style={{ background: `linear-gradient(195deg, color-mix(in srgb, ${accent} 26%, var(--midnight)), var(--midnight))` }}
-      >
+      {/* 5 — next product */}
+      <section className="px-6 pt-8 pb-24 md:pt-12">
         <Reveal>
-          <h2 className="text-balance font-display text-3xl font-medium text-ink sm:text-4xl">
-            {tc("rfqButton")}
-          </h2>
-          <p className="mx-auto mt-3 max-w-md text-ink-soft">{t("tagline")}</p>
           <Link
-            href={`/contact?product=${product.slug}`}
-            className="mt-7 inline-flex items-center gap-2 rounded-full bg-electric-blue px-6 py-3.5 text-sm font-semibold text-ink shadow-[0_10px_30px_rgba(47,111,239,0.4)] transition-transform hover:scale-[1.03]"
+            href={`/products/${next.slug}`}
+            className="group relative mx-auto flex max-w-6xl flex-col overflow-hidden rounded-[2.5rem] glass sm:block sm:min-h-[24rem]"
           >
-            {tc("rfqButton")}
-            <ArrowUpRight size={16} />
+            <div className="relative z-10 px-8 pt-10 sm:w-[52%] sm:px-12 sm:py-16">
+              <p className="text-xs font-semibold uppercase tracking-[0.25em] text-ink-soft">
+                {tg("next")}
+              </p>
+              <p className="mt-3 text-balance font-display text-4xl font-medium text-ink sm:text-6xl">
+                {tp(`${next.slug}.name`)}
+              </p>
+              <p className="mt-4 text-ink-soft">{tp(`${next.slug}.tagline`)}</p>
+              <span className="mt-7 grid h-12 w-12 place-items-center rounded-full bg-electric-blue text-ink transition-transform duration-500 group-hover:translate-x-2 rtl:rotate-180 rtl:group-hover:-translate-x-2">
+                <ChevronRight size={20} />
+              </span>
+            </div>
+            <div className="relative mt-8 h-60 [mask-image:linear-gradient(to_top,#000_60%,transparent)] sm:absolute sm:inset-y-0 sm:end-0 sm:mt-0 sm:h-auto sm:w-[56%] sm:[mask-image:linear-gradient(to_left,#000_55%,transparent)] sm:rtl:[mask-image:linear-gradient(to_right,#000_55%,transparent)]">
+              <Image
+                src={`/products/${next.slug}.jpg`}
+                alt=""
+                fill
+                sizes="(min-width: 640px) 645px, 100vw"
+                className="object-cover object-[center_62%] transition-transform duration-[1200ms] ease-out group-hover:scale-[1.06]"
+              />
+            </div>
           </Link>
         </Reveal>
 
-        <div className="flex items-center gap-3">
+        <div className="mt-10 flex items-center justify-center gap-3">
           <Link
             href={`/products/${prev.slug}`}
             aria-label={tp(`${prev.slug}.name`)}
@@ -310,26 +318,6 @@ export function ProductStory({ slug }: { slug: string }) {
           </Link>
         </div>
       </section>
-    </div>
-  );
-}
-
-function ShardImage({ src, alt }: { src: string; alt: string }) {
-  return (
-    <div
-      className="relative h-full w-full overflow-hidden"
-      style={{
-        clipPath: "polygon(20% 0%, 100% 10%, 92% 85%, 58% 100%, 8% 88%, 0% 32%)",
-      }}
-    >
-      <Image
-        src={src}
-        alt={alt}
-        fill
-        sizes="(min-width: 640px) 392px, 280px"
-        className="object-cover"
-        style={{ objectPosition: "center 70%" }}
-      />
     </div>
   );
 }
@@ -360,7 +348,7 @@ function FallingPhoto({
         alt={alt}
         width={880}
         height={1168}
-        sizes="(min-width: 768px) 290px, 200px"
+        sizes="(min-width: 1024px) 320px, 230px"
         className="h-full w-full object-cover"
       />
     </motion.div>
