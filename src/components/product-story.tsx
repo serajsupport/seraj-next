@@ -1,12 +1,13 @@
 "use client";
 
-import { useEffect, useRef, type ReactNode } from "react";
+import { useRef } from "react";
 import { useTranslations } from "next-intl";
 import { motion, useScroll, useTransform } from "motion/react";
 import Image from "next/image";
 import { Link } from "@/i18n/navigation";
 import { PRODUCTS, getProduct, type AccentColor } from "@/data/products";
 import { BasketIcon, SackIcon } from "@/components/scene-props";
+import { Parallax, Reveal } from "@/components/reveal";
 import { ArrowDown, ArrowUpRight, ChevronLeft, ChevronRight, X } from "lucide-react";
 
 const HERO_SIZES = "(min-width: 1024px) 480px, 290px";
@@ -363,73 +364,5 @@ function FallingPhoto({
         className="h-full w-full object-cover"
       />
     </motion.div>
-  );
-}
-
-function Reveal({ children, className = "" }: { children: ReactNode; className?: string }) {
-  const ref = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const el = ref.current;
-    if (!el) return;
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          el.classList.add("is-visible");
-          observer.unobserve(el);
-        }
-      },
-      { threshold: 0.3 },
-    );
-    observer.observe(el);
-    return () => observer.disconnect();
-  }, []);
-
-  return (
-    <div ref={ref} className={`reveal ${className}`}>
-      {children}
-    </div>
-  );
-}
-
-function Parallax({
-  children,
-  speed = 0.1,
-  className = "",
-}: {
-  children: ReactNode;
-  speed?: number;
-  className?: string;
-}) {
-  const ref = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const el = ref.current;
-    if (!el) return;
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-
-    let frame = 0;
-    const update = () => {
-      frame = 0;
-      const rect = el.getBoundingClientRect();
-      const offset = rect.top + rect.height / 2 - window.innerHeight / 2;
-      el.style.transform = `translateY(${offset * -speed}px)`;
-    };
-    const onScroll = () => {
-      if (!frame) frame = requestAnimationFrame(update);
-    };
-
-    update();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => {
-      window.removeEventListener("scroll", onScroll);
-      if (frame) cancelAnimationFrame(frame);
-    };
-  }, [speed]);
-
-  return (
-    <div ref={ref} className={className}>
-      {children}
-    </div>
   );
 }

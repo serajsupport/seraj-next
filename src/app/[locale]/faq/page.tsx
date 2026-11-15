@@ -1,5 +1,6 @@
 import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
+import { Reveal } from "@/components/reveal";
 import { ArrowUpRight } from "lucide-react";
 
 export default function FaqPage() {
@@ -19,10 +20,12 @@ export default function FaqPage() {
 
         <div className="mt-12 flex flex-col gap-4">
           {items.map((item, i) => (
-            <div key={i} className="rounded-[1.75rem] glass-strong p-6 sm:p-7">
-              <p className="font-display text-lg font-medium text-ink">{item.q}</p>
-              <p className="mt-2 text-sm leading-relaxed text-ink-soft">{item.a}</p>
-            </div>
+            <Reveal key={i}>
+              <div className="lift rounded-[1.75rem] glass-strong p-6 sm:p-7">
+                <p className="font-display text-lg font-medium text-ink">{item.q}</p>
+                <p className="mt-2 text-sm leading-relaxed text-ink-soft">{item.a}</p>
+              </div>
+            </Reveal>
           ))}
         </div>
 

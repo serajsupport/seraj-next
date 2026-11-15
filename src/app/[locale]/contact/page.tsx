@@ -1,6 +1,7 @@
 import { Suspense } from "react";
 import { useTranslations } from "next-intl";
 import { RfqForm } from "@/components/rfq-form";
+import { Reveal } from "@/components/reveal";
 
 export default function ContactPage() {
   const t = useTranslations("contact");
@@ -8,7 +9,7 @@ export default function ContactPage() {
   return (
     <section className="px-4 pt-14 pb-24 md:pt-20">
       <div className="mx-auto max-w-3xl">
-        <div className="text-center">
+        <Reveal className="text-center">
           <span className="inline-block rounded-full glass px-4 py-1.5 text-xs font-semibold uppercase tracking-wider text-ink">
             {t("eyebrow")}
           </span>
@@ -16,13 +17,13 @@ export default function ContactPage() {
             {t("title")}
           </h1>
           <p className="mt-3 text-ink-soft">{t("subtitle")}</p>
-        </div>
+        </Reveal>
 
-        <div className="mt-12">
+        <Reveal delay={120} className="mt-12">
           <Suspense>
             <RfqForm />
           </Suspense>
-        </div>
+        </Reveal>
 
         <div className="mt-10 rounded-[2rem] glass p-6 text-center sm:p-8">
           <p className="text-xs font-semibold uppercase tracking-wider text-ink-soft">
