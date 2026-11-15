@@ -15,7 +15,7 @@ export function RfqForm() {
   const searchParams = useSearchParams();
   const preselected = searchParams.get("product") ?? "";
 
-  const [status, setStatus] = useState<"idle" | "loading" | "sent">("idle");
+  const [status, setStatus] = useState<"idle" | "loading" | "sent" | "error">("idle");
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -25,13 +25,14 @@ export function RfqForm() {
     const payload = Object.fromEntries(form.entries());
 
     try {
-      await fetch("/api/rfq", {
+      const response = await fetch("/api/rfq", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload),
       });
-    } finally {
-      setStatus("sent");
+      setStatus(response.ok ? "sent" : "error");
+    } catch {
+      setStatus("error");
     }
   }
 
@@ -47,7 +48,7 @@ export function RfqForm() {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="glass-strong grid gap-5 p-8 md:p-10">
+    <form onSubmit={handleSubmit} className="glass-strong relative grid gap-5 p-8 md:p-10">
       <div className="grid gap-5 sm:grid-cols-2">
         <Field label={t("fields.name")}>
           <input name="name" required className={inputClass} />
@@ -94,6 +95,21 @@ export function RfqForm() {
       <Field label={t("fields.message")}>
         <textarea name="message" rows={4} className={inputClass} />
       </Field>
+
+      <input
+        type="text"
+        name="website"
+        tabIndex={-1}
+        autoComplete="off"
+        aria-hidden
+        className="absolute -left-[9999px] h-px w-px opacity-0"
+      />
+
+      {status === "error" && (
+        <p role="alert" className="text-sm text-ink">
+          {t("error")}
+        </p>
+      )}
 
       <button
         type="submit"
