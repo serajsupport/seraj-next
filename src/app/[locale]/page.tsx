@@ -70,7 +70,7 @@ export default function HomePage() {
             <div className="mt-8 flex flex-wrap items-center justify-center gap-3 lg:justify-start">
               <Link
                 href="/contact"
-                className="group inline-flex items-center gap-2 rounded-full bg-electric-blue px-6 py-3.5 text-sm font-semibold text-ink shadow-[0_10px_30px_rgba(47,111,239,0.4)] transition-transform hover:scale-[1.03]"
+                className="group inline-flex items-center gap-2 rounded-full bg-electric-blue px-6 py-3.5 text-sm font-semibold text-on-accent shadow-[0_10px_30px_rgb(var(--accent-rgb)/0.4)] transition-transform hover:scale-[1.03]"
               >
                 {th("cta")}
                 <ArrowUpRight
@@ -183,7 +183,7 @@ export default function HomePage() {
               <p className="mx-auto mt-4 max-w-xl text-ink-soft">{tcb("body")}</p>
               <Link
                 href="/contact"
-                className="mt-8 inline-flex items-center gap-2 rounded-full bg-electric-blue px-6 py-3.5 text-sm font-semibold text-ink shadow-[0_10px_30px_rgba(47,111,239,0.35)] transition-transform hover:scale-[1.03]"
+                className="mt-8 inline-flex items-center gap-2 rounded-full bg-electric-blue px-6 py-3.5 text-sm font-semibold text-on-accent shadow-[0_10px_30px_rgb(var(--accent-rgb)/0.35)] transition-transform hover:scale-[1.03]"
               >
                 {tcb("button")}
                 <ArrowUpRight size={16} />

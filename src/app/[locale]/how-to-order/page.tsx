@@ -58,7 +58,7 @@ export default function HowToOrderPage() {
 
           <Link
             href="/contact"
-            className="mt-10 inline-flex items-center gap-2 rounded-full bg-electric-blue px-6 py-3.5 text-sm font-semibold text-ink shadow-[0_10px_30px_rgba(47,111,239,0.4)] transition-transform hover:scale-[1.03]"
+            className="mt-10 inline-flex items-center gap-2 rounded-full bg-electric-blue px-6 py-3.5 text-sm font-semibold text-on-accent shadow-[0_10px_30px_rgb(var(--accent-rgb)/0.4)] transition-transform hover:scale-[1.03]"
           >
             {tc("rfqButton")}
             <ArrowUpRight size={16} />

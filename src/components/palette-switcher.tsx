@@ -3,8 +3,8 @@
 import { useEffect, useState } from "react";
 
 const PALETTES = [
-  { value: "default", label: "Midnight / Electric Blue", dot: "#2f6fef" },
-  { value: "artdeco", label: "Art Deco Palace", dot: "#a9801a" },
+  { value: "default", label: "Midnight / Saffron Gold", dot: "#e2b14a" },
+  { value: "artdeco", label: "Art Deco Palace", dot: "#0f5c45" },
   { value: "kodachrome", label: "Kodachrome '70s", dot: "#e2672b" },
 ] as const;
 

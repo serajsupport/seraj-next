@@ -11,6 +11,7 @@ import {
 } from "motion/react";
 import Image from "next/image";
 import { useLocale, useTranslations } from "next-intl";
+import { CineOverlay } from "@/components/cine";
 import { Link } from "@/i18n/navigation";
 import { ArrowUpRight } from "lucide-react";
 
@@ -70,6 +71,7 @@ export function RangeScene() {
           />
           <div className="range-spot absolute inset-0" />
         </div>
+        <CineOverlay beam={false} letterbox={false} />
 
         <div
           aria-hidden

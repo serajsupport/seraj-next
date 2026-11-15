@@ -1,16 +1,17 @@
 "use client";
 
 import { useRef } from "react";
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import { motion, useScroll, useTransform } from "motion/react";
 import Image from "next/image";
 import { Link } from "@/i18n/navigation";
 import { PRODUCTS, getProduct, type AccentColor } from "@/data/products";
+import { CineOverlay } from "@/components/cine";
 import { FeatureImage } from "@/components/feature-image";
-import { Parallax, Reveal } from "@/components/reveal";
+import { Reveal } from "@/components/reveal";
 import { ArrowDown, ArrowUpRight, ChevronLeft, ChevronRight, X } from "lucide-react";
 
-const HERO_SIZES = "(min-width: 1024px) 520px, 300px";
+const HERO_SIZES = "(min-width: 1024px) 760px, 100vw";
 
 const accentVar: Record<AccentColor, string> = {
   almond: "var(--almond)",
@@ -34,6 +35,7 @@ export function ProductStory({ slug }: { slug: string }) {
   const tc = useTranslations("common");
   const tp = useTranslations("products");
   const tg = useTranslations("grove");
+  const rtl = useLocale() === "ar";
   const index = PRODUCTS.findIndex((p) => p.slug === slug);
 
   const heroRef = useRef<HTMLDivElement>(null);
@@ -44,8 +46,7 @@ export function ProductStory({ slug }: { slug: string }) {
   // Ranges span 0–1 explicitly: the native scroll timeline fades back to the base value past the last keyframe otherwise.
   const midOpacity = useTransform(heroProgress, [0, 0.16, 0.42, 1], [0, 0, 1, 1]);
   const endOpacity = useTransform(heroProgress, [0, 0.56, 0.84, 1], [0, 0, 1, 1]);
-  const cardScale = useTransform(heroProgress, [0, 1], [0.94, 1]);
-  const photoScale = useTransform(heroProgress, [0, 1], [1.14, 1]);
+  const stageScale = useTransform(heroProgress, [0, 1], [1, 1.12]);
 
   if (!product) return null;
 
@@ -81,77 +82,97 @@ export function ProductStory({ slug }: { slug: string }) {
         </span>
       </div>
 
-      {/* 1 — hero: pinned while the photo scrubs through its pouring sequence */}
-      <section ref={heroRef} className="relative h-[260dvh] w-full">
-        <div className="sticky top-0 flex h-dvh w-full items-center overflow-hidden px-6">
-          <Parallax speed={0.08} className="pointer-events-none absolute start-[-6%] top-[14%] h-[70%] w-[60%] max-w-xl opacity-[0.08]">
-            <product.Icon className="h-full w-full text-ink" />
-          </Parallax>
-          <div className="relative z-10 mx-auto grid w-full max-w-6xl items-center gap-6 lg:grid-cols-2 lg:gap-16">
-            <Reveal className="order-2 text-center lg:order-1 lg:text-start">
-              <span className="glass inline-block rounded-full px-4 py-1.5 text-xs font-semibold uppercase tracking-wider text-ink">
-                {t("origin")}
-              </span>
-              <h1 className="mt-5 text-balance font-display text-[clamp(2.2rem,6vw,5rem)] font-medium leading-[0.98] text-ink">
-                {t("name")}
-              </h1>
-              <p className="mt-4 text-lg text-ink-soft">{t("tagline")}</p>
-              <div className="mt-6 flex flex-wrap items-center justify-center gap-3 lg:justify-start">
-                <Link
-                  href={rfqHref}
-                  className="inline-flex items-center gap-2 rounded-full bg-electric-blue px-6 py-3.5 text-sm font-semibold text-ink shadow-[0_10px_30px_rgba(47,111,239,0.4)] transition-transform hover:scale-[1.03]"
-                >
-                  {tc("rfqButton")}
-                  <ArrowUpRight size={16} />
-                </Link>
-                <span className="glass hidden rounded-full px-5 py-3.5 text-sm font-medium text-ink sm:inline-block">
-                  {tc("specLabels.minOrder")}: {spec.minOrder}
-                </span>
-              </div>
-            </Reveal>
-            <motion.div
-              style={{ scale: cardScale }}
-              className="relative order-1 mx-auto aspect-[880/1168] h-[min(40dvh,360px)] overflow-hidden rounded-[1.75rem] shadow-[0_30px_80px_rgba(0,0,0,0.6)] lg:order-2 lg:h-[min(78dvh,680px)]"
-            >
-              <motion.div style={{ scale: photoScale }} className="absolute inset-0">
-                <Image
-                  src={`/products/${product.slug}-start.jpg`}
-                  alt={t("name")}
-                  fill
-                  preload
-                  quality={90}
-                  sizes={HERO_SIZES}
-                  className="object-cover"
-                />
-                {(
-                  [
-                    [`/products/${product.slug}.jpg`, midOpacity],
-                    [`/products/${product.slug}-end.jpg`, endOpacity],
-                  ] as const
-                ).map(([src, opacity]) => (
-                  <motion.div key={src} style={{ opacity }} className="absolute inset-0">
+      {/* 1 — hero: a pinned film stage; scrolling pours the product into the bowl */}
+      <section ref={heroRef} dir="ltr" className="relative h-[280dvh] w-full">
+        <div className="sticky top-0 h-dvh w-full overflow-hidden bg-black">
+          <div
+            className={`absolute bottom-[3dvh] left-1/2 aspect-[880/1168] h-[min(140vw,72dvh)] -translate-x-1/2 lg:top-1/2 lg:bottom-auto lg:h-[112dvh] lg:-translate-y-1/2 ${
+              rtl ? "lg:left-[32%]" : "lg:left-[68%]"
+            }`}
+          >
+            <div className="cine-fade-x h-full w-full">
+              <div className="cine-fade-top h-full w-full [--fade-top:26%] lg:[--fade-top:10%]">
+                <motion.div style={{ scale: stageScale }} className="relative h-full w-full origin-[50%_72%]">
+                  <div className="cine-kenburns absolute inset-0">
                     <Image
-                      src={src}
-                      alt=""
+                      src={`/products/${product.slug}-start.jpg`}
+                      alt={t("name")}
                       fill
-                      loading="eager"
+                      preload
                       quality={90}
                       sizes={HERO_SIZES}
                       className="object-cover"
                     />
-                  </motion.div>
-                ))}
-              </motion.div>
-              <motion.div
-                aria-hidden
-                style={{ scaleX: heroProgress, background: accent }}
-                className="absolute inset-x-0 bottom-0 h-1 origin-left rtl:origin-right"
-              />
-            </motion.div>
+                    {(
+                      [
+                        [`/products/${product.slug}.jpg`, midOpacity],
+                        [`/products/${product.slug}-end.jpg`, endOpacity],
+                      ] as const
+                    ).map(([src, opacity]) => (
+                      <motion.div key={src} style={{ opacity }} className="absolute inset-0">
+                        <Image
+                          src={src}
+                          alt=""
+                          fill
+                          loading="eager"
+                          quality={90}
+                          sizes={HERO_SIZES}
+                          className="object-cover"
+                        />
+                      </motion.div>
+                    ))}
+                  </div>
+                </motion.div>
+              </div>
+            </div>
+          </div>
+
+          <div
+            aria-hidden
+            className={`absolute inset-0 bg-gradient-to-b from-black/80 via-black/10 to-transparent ${
+              rtl
+                ? "lg:bg-gradient-to-l lg:from-black/85 lg:via-black/20 lg:to-transparent"
+                : "lg:bg-gradient-to-r lg:from-black/85 lg:via-black/20 lg:to-transparent"
+            }`}
+          />
+          <CineOverlay />
+
+          <div
+            dir={rtl ? "rtl" : "ltr"}
+            className="absolute inset-y-0 start-0 flex w-full flex-col items-center px-6 pt-[13dvh] text-center lg:w-[48%] lg:items-start lg:justify-center lg:px-14 lg:pt-0 lg:text-start"
+          >
+            <Reveal className="flex flex-col items-center lg:items-start">
+              <p className="text-xs font-semibold tracking-[0.3em] text-white/60 uppercase">
+                {t("origin")}
+              </p>
+              <h1 className="mt-4 text-balance font-display text-[clamp(2.4rem,6vw,5.4rem)] leading-[0.96] font-medium text-white">
+                {t("name")}
+              </h1>
+              <p className="mt-4 max-w-md text-lg text-white/75">{t("tagline")}</p>
+              <div className="mt-7 flex flex-wrap items-center justify-center gap-3 lg:justify-start">
+                <Link
+                  href={rfqHref}
+                  className="inline-flex items-center gap-2 rounded-full bg-electric-blue px-6 py-3.5 text-sm font-semibold text-on-accent shadow-[0_10px_30px_rgb(var(--accent-rgb)/0.4)] transition-transform hover:scale-[1.03]"
+                >
+                  {tc("rfqButton")}
+                  <ArrowUpRight size={16} />
+                </Link>
+                <span className="hidden rounded-full bg-white/12 px-5 py-3.5 text-sm font-medium text-white backdrop-blur-md sm:inline-block">
+                  {tc("specLabels.minOrder")}: {spec.minOrder}
+                </span>
+              </div>
+            </Reveal>
+          </div>
+
+          <div aria-hidden className="absolute inset-x-0 bottom-[9dvh] h-px bg-white/15">
+            <motion.div
+              style={{ scaleX: heroProgress, background: accent }}
+              className={`h-full ${rtl ? "origin-right" : "origin-left"}`}
+            />
           </div>
           <ArrowDown
             size={20}
-            className="absolute bottom-5 left-1/2 -translate-x-1/2 animate-bounce text-ink-soft"
+            className="absolute bottom-[10.5dvh] left-1/2 -translate-x-1/2 animate-bounce text-white/60"
           />
         </div>
       </section>
@@ -254,7 +275,7 @@ export function ProductStory({ slug }: { slug: string }) {
               </div>
               <Link
                 href={rfqHref}
-                className="inline-flex items-center gap-2 self-start rounded-full bg-electric-blue px-6 py-3.5 text-sm font-semibold text-ink shadow-[0_10px_30px_rgba(47,111,239,0.4)] transition-transform hover:scale-[1.03]"
+                className="inline-flex items-center gap-2 self-start rounded-full bg-electric-blue px-6 py-3.5 text-sm font-semibold text-on-accent shadow-[0_10px_30px_rgb(var(--accent-rgb)/0.4)] transition-transform hover:scale-[1.03]"
               >
                 {tc("rfqButton")}
                 <ArrowUpRight size={16} />
@@ -279,7 +300,7 @@ export function ProductStory({ slug }: { slug: string }) {
                 {tp(`${next.slug}.name`)}
               </p>
               <p className="mt-4 text-ink-soft">{tp(`${next.slug}.tagline`)}</p>
-              <span className="mt-7 grid h-12 w-12 place-items-center rounded-full bg-electric-blue text-ink transition-transform duration-500 group-hover:translate-x-2 rtl:rotate-180 rtl:group-hover:-translate-x-2">
+              <span className="mt-7 grid h-12 w-12 place-items-center rounded-full bg-electric-blue text-on-accent transition-transform duration-500 group-hover:translate-x-2 rtl:rotate-180 rtl:group-hover:-translate-x-2">
                 <ChevronRight size={20} />
               </span>
             </div>

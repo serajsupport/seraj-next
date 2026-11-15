@@ -98,7 +98,7 @@ export function RfqForm() {
       <button
         type="submit"
         disabled={status === "loading"}
-        className="mt-2 inline-flex w-fit items-center gap-2 rounded-full bg-electric-blue px-6 py-3.5 text-sm font-semibold text-ink shadow-[0_10px_30px_rgba(47,111,239,0.4)] transition-transform hover:scale-[1.03] disabled:opacity-60"
+        className="mt-2 inline-flex w-fit items-center gap-2 rounded-full bg-electric-blue px-6 py-3.5 text-sm font-semibold text-on-accent shadow-[0_10px_30px_rgb(var(--accent-rgb)/0.4)] transition-transform hover:scale-[1.03] disabled:opacity-60"
       >
         {t("submit")}
         <ArrowUpRight size={16} />

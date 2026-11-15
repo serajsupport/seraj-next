@@ -63,7 +63,7 @@ export function SiteHeader() {
           <LocaleSwitcher locale={locale} pathname={pathname} />
           <Link
             href="/contact"
-            className="rounded-full bg-electric-blue px-5 py-2.5 text-sm font-semibold text-ink shadow-[0_6px_18px_rgba(47,111,239,0.4)] transition-transform hover:scale-[1.03]"
+            className="rounded-full bg-electric-blue px-5 py-2.5 text-sm font-semibold text-on-accent shadow-[0_6px_18px_rgb(var(--accent-rgb)/0.4)] transition-transform hover:scale-[1.03]"
           >
             {t("rfq")}
           </Link>
@@ -94,7 +94,7 @@ export function SiteHeader() {
           <Link
             href="/contact"
             onClick={() => setOpen(false)}
-            className="mt-1 rounded-2xl bg-electric-blue px-4 py-3 text-center text-base font-semibold text-ink"
+            className="mt-1 rounded-2xl bg-electric-blue px-4 py-3 text-center text-base font-semibold text-on-accent"
           >
             {t("rfq")}
           </Link>
@@ -121,7 +121,7 @@ function LocaleSwitcher({
         href={pathname}
         locale="en"
         className={`rounded-full px-3 py-1.5 transition-colors ${
-          locale === "en" ? "bg-electric-blue text-ink shadow-sm" : "text-ink-soft"
+          locale === "en" ? "bg-electric-blue text-on-accent shadow-sm" : "text-ink-soft"
         }`}
       >
         EN
@@ -130,7 +130,7 @@ function LocaleSwitcher({
         href={pathname}
         locale="ar"
         className={`rounded-full px-3 py-1.5 transition-colors ${
-          locale === "ar" ? "bg-electric-blue text-ink shadow-sm" : "text-ink-soft"
+          locale === "ar" ? "bg-electric-blue text-on-accent shadow-sm" : "text-ink-soft"
         }`}
       >
         عربي

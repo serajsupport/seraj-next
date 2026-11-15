@@ -122,7 +122,7 @@ export function GroveBrowser() {
 
               <Link
                 href={`/products/${product.slug}`}
-                className="mt-7 inline-flex items-center gap-2 rounded-full bg-electric-blue px-6 py-3 text-sm font-semibold text-ink transition-transform hover:scale-[1.03]"
+                className="mt-7 inline-flex items-center gap-2 rounded-full bg-electric-blue px-6 py-3 text-sm font-semibold text-on-accent transition-transform hover:scale-[1.03]"
               >
                 {tg("enter")}
                 <ArrowUpRight size={16} />

@@ -72,7 +72,7 @@ export function IntroGate() {
           className="fixed inset-0 z-[60] flex flex-col items-center justify-center overflow-hidden px-6 text-center"
           style={{
             background:
-              "radial-gradient(60rem 40rem at 50% -10%, rgba(47,111,239,0.14), transparent 65%), radial-gradient(50rem 36rem at 90% 100%, rgba(255,148,82,0.12), transparent 70%), var(--midnight)",
+              "radial-gradient(60rem 40rem at 50% -10%, rgb(var(--accent-rgb) / 0.12), transparent 65%), radial-gradient(50rem 36rem at 90% 100%, rgb(var(--cantaloupe-rgb) / 0.12), transparent 70%), var(--midnight)",
           }}
           exit={{ opacity: 0 }}
           transition={{ duration: dismissed ? 0.6 : 0, ease: "easeInOut" }}
@@ -129,7 +129,7 @@ export function IntroGate() {
                 delay: 0.25 + lines.length * 0.15 + 0.35,
               }}
               onClick={enter}
-              className="mt-9 inline-flex items-center gap-2 rounded-full bg-electric-blue px-6 py-3.5 text-sm font-semibold text-ink transition-transform hover:scale-[1.03] active:scale-[0.97]"
+              className="mt-9 inline-flex items-center gap-2 rounded-full bg-electric-blue px-6 py-3.5 text-sm font-semibold text-on-accent transition-transform hover:scale-[1.03] active:scale-[0.97]"
             >
               <Sprout size={16} />
               {t("enter")}
